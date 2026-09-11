@@ -1,0 +1,298 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/image-resizer.css";
+---
+
+<BaseLayout
+  title="Image Resizer"
+  description="Resize JPG, PNG, and WebP images directly in your browser. Change dimensions, choose an output format, and control image quality without uploading your files."
+>
+  <section class="tool-page">
+    <div class="container">
+      <div class="tool-intro">
+        <p class="eyebrow">Image Tool</p>
+
+        <h1>Image Resizer</h1>
+
+        <p>
+          Resize JPG, PNG, and WebP images directly in your browser.
+          Your image stays on your device.
+        </p>
+      </div>
+
+      <div class="resizer-card">
+        <div class="upload-area" id="uploadArea">
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+          />
+
+          <div class="upload-content">
+            <h2>Choose an image</h2>
+
+            <p>
+              Drag and drop an image here, or choose a file from your device.
+            </p>
+
+            <button type="button" id="chooseImageButton">
+              Choose image
+            </button>
+
+            <span>JPG, PNG, or WebP</span>
+          </div>
+        </div>
+
+        <div class="editor" id="editor" hidden>
+          <div class="preview-panel">
+            <h2>Preview</h2>
+
+            <div class="preview-box">
+              <img
+                id="imagePreview"
+                alt="Preview of uploaded image"
+              />
+            </div>
+
+            <p class="file-name" id="fileName"></p>
+            <p class="original-size" id="originalSize"></p>
+            <p class="file-size" id="originalFileSize"></p>
+          </div>
+
+          <div class="controls-panel">
+            <h2>Resize image</h2>
+
+            <div class="preset-section">
+              <span class="control-label">Quick resize</span>
+
+              <div class="preset-buttons" aria-label="Resize percentage presets">
+                <button type="button" class="preset-button" data-scale="0.25">
+                  25%
+                </button>
+
+                <button type="button" class="preset-button" data-scale="0.5">
+                  50%
+                </button>
+
+                <button type="button" class="preset-button" data-scale="0.75">
+                  75%
+                </button>
+
+                <button type="button" class="preset-button" data-scale="1">
+                  100%
+                </button>
+              </div>
+            </div>
+
+            <div class="dimension-grid">
+              <label>
+                Width
+                <div class="input-with-unit">
+                  <input
+                    type="number"
+                    id="widthInput"
+                    min="1"
+                    max="12000"
+                    inputmode="numeric"
+                  />
+                  <span>px</span>
+                </div>
+              </label>
+
+              <label>
+                Height
+                <div class="input-with-unit">
+                  <input
+                    type="number"
+                    id="heightInput"
+                    min="1"
+                    max="12000"
+                    inputmode="numeric"
+                  />
+                  <span>px</span>
+                </div>
+              </label>
+            </div>
+
+            <p class="dimension-note">
+              Maximum output dimension: 12,000 px per side.
+            </p>
+
+            <label class="ratio-control">
+              <input
+                type="checkbox"
+                id="lockAspectRatio"
+                checked
+              />
+
+              <span>Keep aspect ratio</span>
+            </label>
+
+            <div class="output-settings">
+              <label>
+                Output format
+
+                <select id="formatSelect">
+                  <option value="original">Same as original</option>
+                  <option value="image/jpeg">JPG</option>
+                  <option value="image/png">PNG</option>
+                  <option value="image/webp">WebP</option>
+                </select>
+              </label>
+
+              <label id="qualityControl">
+                <div class="quality-heading">
+                  <span>Quality</span>
+                  <span id="qualityValue">90%</span>
+                </div>
+
+                <input
+                  type="range"
+                  id="qualityInput"
+                  min="10"
+                  max="100"
+                  value="90"
+                  step="1"
+                />
+              </label>
+            </div>
+
+            <div class="button-row">
+              <button
+                type="button"
+                id="resizeButton"
+                class="primary-action"
+              >
+                Resize image
+              </button>
+
+              <button
+                type="button"
+                id="resetButton"
+                class="secondary-action"
+              >
+                Choose another image
+              </button>
+            </div>
+
+            <p
+              class="error-message"
+              id="errorMessage"
+              role="alert"
+              hidden
+            ></p>
+          </div>
+        </div>
+
+        <div class="result-panel" id="resultPanel" hidden>
+          <div>
+            <p class="eyebrow">Ready</p>
+            <h2>Your resized image is ready</h2>
+            <p id="resultDimensions"></p>
+            <p id="resultFileSize"></p>
+          </div>
+
+          <a
+            id="downloadButton"
+            class="download-button"
+            download
+          >
+            Download resized image
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tool-info-section">
+    <div class="container info-container">
+      <div class="info-block">
+        <p class="eyebrow">How it works</p>
+        <h2>Resize an image in a few steps</h2>
+
+        <ol class="steps-list">
+          <li>Choose or drag in a JPG, PNG, or WebP image.</li>
+          <li>
+            Enter a custom width and height, or use one of the percentage presets.
+          </li>
+          <li>
+            Keep the aspect ratio locked if you want to avoid stretching the image.
+          </li>
+          <li>
+            Choose the output format and quality, then click <strong>Resize image</strong>.
+          </li>
+          <li>Download the resized file directly to your device.</li>
+        </ol>
+      </div>
+
+      <div class="privacy-block">
+        <h2>Processed in your browser</h2>
+
+        <p>
+          The image resizing happens locally in your browser. Your selected
+          image is not uploaded to this website for processing.
+        </p>
+      </div>
+
+      <div class="faq-block">
+        <p class="eyebrow">FAQ</p>
+        <h2>Frequently asked questions</h2>
+
+        <div class="faq-list">
+          <details>
+            <summary>Which image formats are supported?</summary>
+            <p>
+              The resizer currently supports JPG, PNG, and WebP images.
+            </p>
+          </details>
+
+          <details>
+            <summary>What does “Keep aspect ratio” do?</summary>
+            <p>
+              It keeps the image proportions unchanged. When you edit the width,
+              the height updates automatically, and vice versa.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can I resize an image by percentage?</summary>
+            <p>
+              Yes. You can quickly resize the original image to 25%, 50%, 75%,
+              or 100% of its original dimensions.
+            </p>
+          </details>
+
+          <details>
+            <summary>Why is there no quality slider for PNG?</summary>
+            <p>
+              The browser does not use the same quality setting for PNG that it
+              uses for JPG and WebP, so the quality control is only shown when
+              it can affect the output.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does resizing always make the file smaller?</summary>
+            <p>
+              Not necessarily. File size depends on the dimensions, output
+              format, image content, and quality setting. The tool shows the new
+              file size after processing so you can compare it with the
+              original.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is my image uploaded anywhere?</summary>
+            <p>
+              No. The resizing is performed locally in your browser using
+              browser image-processing features.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../scripts/image-resizer.js"></script>
+</BaseLayout>

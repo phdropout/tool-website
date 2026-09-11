@@ -1,17 +1,121 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 
+const tools = [
+  {
+    title: "Image Resizer",
+    description:
+      "Resize JPG, PNG, and WebP images directly in your browser.",
+    href: "/image-resizer/",
+  },
+  {
+    title: "Image Compressor",
+    description:
+      "Reduce image file size while keeping useful image quality.",
+    href: "#",
+  },
+  {
+    title: "Image Converter",
+    description:
+      "Convert between JPG, PNG, and WebP image formats.",
+    href: "#",
+  },
+  {
+    title: "HEIC to JPG",
+    description:
+      "Convert HEIC images into widely supported JPG files.",
+    href: "#",
+  },
+  {
+    title: "Image to PDF",
+    description:
+      "Turn one or more images into a downloadable PDF.",
+    href: "#",
+  },
+  {
+    title: "Merge PDF",
+    description:
+      "Combine multiple PDF files into one document.",
+    href: "#",
+  },
+  {
+    title: "Split PDF",
+    description:
+      "Extract pages or split a PDF into smaller documents.",
+    href: "#",
+  },
+  {
+    title: "CSV to JSON",
+    description:
+      "Convert CSV data into structured JSON.",
+    href: "#",
+  },
+  {
+    title: "Remove CSV Duplicates",
+    description:
+      "Find and remove duplicate rows from CSV files.",
+    href: "#",
+  },
+  {
+    title: "Favicon Generator",
+    description:
+      "Generate favicon files for websites from your image.",
+    href: "#",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Free Online Tools"
+  description="Simple browser-based tools for images, PDFs, CSV files, and more."
+>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Simple browser-based utilities</p>
+
+      <h1>
+        Useful tools without the clutter.
+      </h1>
+
+      <p class="hero-description">
+        Convert, resize, compress, and process files with simple tools
+        designed to get the job done quickly.
+      </p>
+
+      <a href="#tools" class="primary-button">
+        Browse tools
+      </a>
+    </div>
+  </section>
+
+  <section class="tools-section" id="tools">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Tools</p>
+
+        <h2>
+          What do you need to do?
+        </h2>
+      </div>
+
+      <div class="tool-grid">
+        {
+          tools.map((tool) => (
+            <a
+              class={`tool-card ${tool.href === "#" ? "coming-soon" : ""}`}
+              href={tool.href}
+            >
+              <h3>{tool.title}</h3>
+
+              <p>{tool.description}</p>
+
+              <span class="tool-link">
+                {tool.href === "#" ? "Coming soon" : "Open tool →"}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@pdf-lib/upng": "^1.0.1",
-    "astro": "^7.3.1"
+    "astro": "^7.3.1",
+    "exifreader": "^4.45.0",
+    "libheif-js": "^1.23.2"
   },
   "allowScripts": {
     "esbuild": true

@@ -1,0 +1,309 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/image-compressor.css";
+---
+
+<BaseLayout
+  title="Image Compressor"
+  description="Compress JPG, PNG, and WebP images directly in your browser. Reduce image file size, choose an output format, and control image quality without uploading your files."
+>
+  <section class="tool-page">
+    <div class="container">
+      <div class="tool-intro">
+        <p class="eyebrow">Image Tool</p>
+
+        <h1>Image Compressor</h1>
+
+        <p>
+          Reduce image file size directly in your browser while keeping the
+          original dimensions. Your image stays on your device.
+        </p>
+      </div>
+
+      <div class="compressor-card">
+        <div class="upload-area" id="uploadArea">
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+          />
+
+          <div class="upload-content">
+            <h2>Choose an image</h2>
+
+            <p>
+              Drag and drop an image here, or choose a file from your device.
+            </p>
+
+            <button type="button" id="chooseImageButton">
+              Choose image
+            </button>
+
+            <span>JPG, PNG, or WebP</span>
+          </div>
+        </div>
+
+        <div class="editor" id="editor" hidden>
+          <div class="preview-panel">
+            <h2>Preview</h2>
+
+            <div class="preview-box">
+              <img
+                id="imagePreview"
+                alt="Preview of uploaded image"
+              />
+            </div>
+
+            <p class="file-name" id="fileName"></p>
+            <p class="original-size" id="originalSize"></p>
+            <p class="file-size" id="originalFileSize"></p>
+          </div>
+
+          <div class="controls-panel">
+            <h2>Compress image</h2>
+
+            <div class="preset-section">
+              <span class="control-label">Compression level</span>
+
+              <div
+                class="preset-buttons"
+                aria-label="Compression quality presets"
+              >
+                <button
+                  type="button"
+                  class="preset-button"
+                  data-quality="90"
+                >
+                  <span>Light</span>
+                  <small>90%</small>
+                </button>
+
+                <button
+                  type="button"
+                  class="preset-button active"
+                  data-quality="75"
+                >
+                  <span>Balanced</span>
+                  <small>75%</small>
+                </button>
+
+                <button
+                  type="button"
+                  class="preset-button"
+                  data-quality="55"
+                >
+                  <span>Strong</span>
+                  <small>55%</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="output-settings">
+              <label>
+                Output format
+
+                <select id="formatSelect">
+                  <option value="original">Same as original</option>
+                  <option value="image/jpeg">JPG</option>
+                  <option value="image/png">PNG</option>
+                  <option value="image/webp">WebP</option>
+                </select>
+              </label>
+
+              <label id="qualityControl">
+                <div class="quality-heading">
+                  <span id="qualityLabel">Quality</span>
+                  <span id="qualityValue">75%</span>
+                </div>
+
+                <input
+                  type="range"
+                  id="qualityInput"
+                  min="10"
+                  max="100"
+                  value="75"
+                  step="1"
+                />
+
+                <span class="quality-note" id="qualityNote">
+                  Balanced file size and visual quality.
+                </span>
+              </label>
+
+              <p class="format-note" id="pngNotice" hidden>
+                PNG compression uses palette reduction at lower quality settings
+                and lossless optimization at 100%. Transparency is preserved.
+              </p>
+            </div>
+
+            <p class="dimension-preserved-note">
+              Image dimensions will stay unchanged.
+            </p>
+
+            <div class="button-row">
+              <button
+                type="button"
+                id="compressButton"
+                class="primary-action"
+              >
+                Compress image
+              </button>
+
+              <button
+                type="button"
+                id="resetButton"
+                class="secondary-action"
+              >
+                Choose another image
+              </button>
+            </div>
+
+            <p
+              class="error-message"
+              id="errorMessage"
+              role="alert"
+              hidden
+            ></p>
+          </div>
+        </div>
+
+        <div class="result-panel" id="resultPanel" hidden>
+          <div class="result-copy">
+            <p class="eyebrow">Ready</p>
+            <h2>Your compressed image is ready</h2>
+            <p id="resultDimensions"></p>
+
+            <div class="result-stats">
+              <div>
+                <span>Original</span>
+                <strong id="resultOriginalSize"></strong>
+              </div>
+
+              <div>
+                <span>Compressed</span>
+                <strong id="resultCompressedSize"></strong>
+              </div>
+
+              <div>
+                <span>Change</span>
+                <strong id="resultSavings"></strong>
+              </div>
+            </div>
+
+            <p class="result-note" id="resultNote"></p>
+          </div>
+
+          <a
+            id="downloadButton"
+            class="download-button"
+            download
+          >
+            Download compressed image
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tool-info-section">
+    <div class="container info-container">
+      <div class="info-block">
+        <p class="eyebrow">How it works</p>
+        <h2>Compress an image in a few steps</h2>
+
+        <ol class="steps-list">
+          <li>Choose or drag in a JPG, PNG, or WebP image.</li>
+          <li>
+            Choose Light, Balanced, or Strong compression, or set a custom
+            quality level. PNG uses palette reduction at lower settings and
+            lossless optimization at 100%.
+          </li>
+          <li>
+            Keep the original format or choose JPG, PNG, or WebP for the
+            compressed file.
+          </li>
+          <li>
+            Click <strong>Compress image</strong> to create the new file while
+            preserving its pixel dimensions.
+          </li>
+          <li>
+            Compare the original and compressed file sizes, then download the
+            result directly to your device.
+          </li>
+        </ol>
+      </div>
+
+      <div class="privacy-block">
+        <h2>Processed in your browser</h2>
+
+        <p>
+          The image compression happens locally in your browser. Your selected
+          image is not uploaded to this website for processing.
+        </p>
+      </div>
+
+      <div class="faq-block">
+        <p class="eyebrow">FAQ</p>
+        <h2>Frequently asked questions</h2>
+
+        <div class="faq-list">
+          <details>
+            <summary>Which image formats are supported?</summary>
+            <p>
+              The compressor accepts JPG, PNG, and WebP images and can export
+              those same formats.
+            </p>
+          </details>
+
+          <details>
+            <summary>Will compression change my image dimensions?</summary>
+            <p>
+              No. This tool preserves the original width and height. It focuses
+              on reducing file size through image encoding and quality settings.
+            </p>
+          </details>
+
+          <details>
+            <summary>What do Light, Balanced, and Strong mean?</summary>
+            <p>
+              They are quick compression presets. Light uses 90%, Balanced uses
+              75%, and Strong uses 55%. For JPG and WebP those values control
+              encoding quality. For PNG they control how aggressively the color
+              palette is reduced.
+            </p>
+          </details>
+
+          <details>
+            <summary>How does PNG compression work?</summary>
+            <p>
+              At 100%, PNG is optimized without reducing colors. At lower
+              settings, the tool reduces the PNG color palette to create a
+              smaller file while preserving the PNG format and transparency.
+              Lower settings can introduce visible color banding in some images.
+            </p>
+          </details>
+
+          <details>
+            <summary>Will the compressed image always be smaller?</summary>
+            <p>
+              Not necessarily. The result depends on the original image, its
+              existing compression, the selected format, and the quality level.
+              The tool shows the actual size change after processing.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is my image uploaded anywhere?</summary>
+            <p>
+              No. Compression is performed locally using browser image-processing
+              features.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../scripts/image-compressor.js"></script>
+</BaseLayout>

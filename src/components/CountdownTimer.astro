@@ -1,0 +1,142 @@
+---
+import "../styles/countdown-timer.css";
+---
+
+<section class="tool-page timer-tool-page">
+  <div class="container">
+    <div class="tool-intro">
+      <p class="eyebrow">Time Tool</p>
+      <h1>Countdown Timer</h1>
+      <p>A clean, distraction-free countdown timer for exams, classrooms, presentations, meetings, and events.</p>
+    </div>
+
+    <div class="timer-shell" data-countdown-timer>
+      <section class="timer-configuration" aria-label="Timer setup">
+        <div class="timer-text-fields">
+          <label class="timer-field">
+            <span>Title</span>
+            <input id="timerTitleInput" type="text" maxlength="80" placeholder="PHYS 101 — Midterm Exam" autocomplete="off" />
+          </label>
+
+          <label class="timer-field">
+            <span>Message</span>
+            <input id="timerMessageInput" type="text" maxlength="120" placeholder="You may begin." autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="duration-block">
+          <span class="control-label">Duration</span>
+          <div class="duration-inputs">
+            <label class="duration-field">
+              <input id="hoursInput" type="number" min="0" max="99" value="0" inputmode="numeric" aria-label="Hours" />
+              <span>Hours</span>
+            </label>
+            <span class="duration-colon" aria-hidden="true">:</span>
+            <label class="duration-field">
+              <input id="minutesInput" type="number" min="0" max="59" value="45" inputmode="numeric" aria-label="Minutes" />
+              <span>Minutes</span>
+            </label>
+            <span class="duration-colon" aria-hidden="true">:</span>
+            <label class="duration-field">
+              <input id="secondsInput" type="number" min="0" max="59" value="0" inputmode="numeric" aria-label="Seconds" />
+              <span>Seconds</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="timer-display-panel" id="timerStage" aria-label="Countdown display">
+        <div class="presentation-copy">
+          <p id="timerTitle" class="presentation-title"></p>
+          <p id="timerMessage" class="presentation-message"></p>
+        </div>
+
+        <div id="timerDisplay" class="timer-display" role="timer" aria-live="off" aria-label="45 minutes remaining">45:00</div>
+
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="timer-meta">
+          <div class="timer-meta-item">
+            <span>Ends at</span>
+            <strong id="endTimeValue">—</strong>
+          </div>
+          <div class="timer-meta-divider" aria-hidden="true"></div>
+          <div class="timer-meta-item timer-state-item">
+            <span>Status</span>
+            <strong id="timerStatus">Ready</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="timer-actions" aria-label="Timer controls">
+        <div class="main-actions">
+          <button id="startPauseButton" class="timer-primary-action" type="button">Start timer</button>
+          <button id="resetButton" class="timer-secondary-action" type="button">Reset</button>
+          <button id="fullscreenButton" class="timer-secondary-action" type="button">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span id="fullscreenLabel">Present fullscreen</span>
+          </button>
+        </div>
+
+        <div class="quick-adjustments">
+          <span class="control-label">Quick adjust</span>
+          <div class="adjustment-buttons">
+            <button type="button" data-adjust="-300">−5 min</button>
+            <button type="button" data-adjust="-60">−1 min</button>
+            <button type="button" data-adjust="60">+1 min</button>
+            <button type="button" data-adjust="300">+5 min</button>
+          </div>
+        </div>
+
+        <div class="timer-preferences">
+          <label class="sound-option">
+            <input id="soundToggle" type="checkbox" checked />
+            <span>Play a sound when time is up</span>
+          </label>
+
+          <p class="keyboard-hint">
+            <span><kbd>Space</kbd> Start / pause</span>
+            <span><kbd>R</kbd> Reset</span>
+            <span><kbd>F</kbd> Fullscreen</span>
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section class="tool-info-section timer-info-section">
+  <div class="container info-container">
+    <div class="info-block">
+      <p class="eyebrow">Designed for visibility</p>
+      <h2>A timer students can read from across the room</h2>
+      <p>The countdown uses large, tabular numerals and a focused presentation mode so the remaining time stays easy to read on classroom displays and projectors.</p>
+    </div>
+
+    <div class="timer-feature-grid">
+      <article>
+        <h3>Fullscreen presentation</h3>
+        <p>Present only the exam title, message, countdown, progress, and end time without the rest of the website getting in the way.</p>
+      </article>
+      <article>
+        <h3>Adjust while running</h3>
+        <p>Add or remove time without stopping the timer when an exam or presentation schedule changes.</p>
+      </article>
+      <article>
+        <h3>Accurate in the background</h3>
+        <p>The timer tracks a target finish time rather than relying on a simple one-second counter, helping it stay accurate when browser tabs lose focus.</p>
+      </article>
+    </div>
+
+    <div class="privacy-block timer-privacy-block">
+      <h2>Runs entirely in your browser</h2>
+      <p>The timer does not require an account, upload information, or send your title and message anywhere for processing.</p>
+    </div>
+  </div>
+</section>
+
+<script src="../scripts/countdown-timer.js"></script>

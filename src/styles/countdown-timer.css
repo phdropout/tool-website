@@ -1,0 +1,539 @@
+.timer-tool-page {
+  padding-bottom: 100px;
+}
+
+.timer-shell {
+  max-width: 950px;
+  overflow: hidden;
+  border: 1px solid #e2e2e2;
+  border-radius: 16px;
+  background: #fff;
+}
+
+.timer-configuration {
+  padding: 28px;
+  border-bottom: 1px solid #e7e7e7;
+  background: #fafafa;
+}
+
+.timer-text-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.timer-field,
+.duration-field {
+  display: grid;
+  gap: 8px;
+}
+
+.timer-field > span,
+.control-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.timer-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: #1a1a1a;
+  font: inherit;
+}
+
+.timer-field input:focus,
+.duration-field input:focus {
+  border-color: #555;
+}
+
+.duration-block {
+  margin-top: 24px;
+}
+
+.duration-inputs {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 11px;
+}
+
+.duration-field {
+  width: 104px;
+}
+
+.duration-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 8px;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  outline: none;
+  background: #fff;
+  color: #1a1a1a;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.duration-field span {
+  color: #777;
+  font-size: 0.76rem;
+  text-align: center;
+}
+
+.duration-colon {
+  margin-top: 8px;
+  color: #777;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.timer-display-panel {
+  position: relative;
+  min-height: 430px;
+  padding: 50px 32px 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.024), transparent 42%),
+    #fff;
+  text-align: center;
+}
+
+.presentation-copy {
+  width: min(720px, 100%);
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.presentation-title {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.presentation-message {
+  margin: 7px 0 0;
+  color: #666;
+  font-size: 0.98rem;
+}
+
+.presentation-title:empty,
+.presentation-message:empty {
+  display: none;
+}
+
+.timer-display {
+  margin: 18px 0 24px;
+  color: #1a1a1a;
+  font-size: clamp(5.5rem, 14vw, 9rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.progress-track {
+  width: min(610px, 82%);
+  height: 7px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #ebebeb;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: #1a1a1a;
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 0.2s linear, background 0.2s ease;
+}
+
+.timer-meta {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.timer-meta-item {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+}
+
+.timer-meta-item span {
+  color: #888;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.timer-meta-item strong {
+  font-size: 0.95rem;
+}
+
+.timer-meta-divider {
+  width: 1px;
+  height: 32px;
+  background: #e2e2e2;
+}
+
+.timer-display-panel.timer-warning .timer-display,
+.timer-display-panel.timer-warning .progress-bar {
+  color: #9a6200;
+  background: #9a6200;
+}
+
+.timer-display-panel.timer-critical .timer-display,
+.timer-display-panel.timer-finished .timer-display {
+  color: #a22222;
+}
+
+.timer-display-panel.timer-critical .progress-bar,
+.timer-display-panel.timer-finished .progress-bar {
+  background: #a22222;
+}
+
+.timer-display-panel.timer-finished .timer-display {
+  transform: scale(1.025);
+}
+
+.timer-actions {
+  padding: 26px 28px 28px;
+  border-top: 1px solid #e7e7e7;
+}
+
+.main-actions {
+  display: grid;
+  grid-template-columns: minmax(180px, 1.35fr) minmax(110px, 0.65fr) minmax(190px, 1fr);
+  gap: 10px;
+}
+
+.timer-primary-action,
+.timer-secondary-action,
+.adjustment-buttons button {
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.timer-primary-action,
+.timer-secondary-action {
+  min-height: 50px;
+  padding: 12px 18px;
+}
+
+.timer-primary-action {
+  border: 0;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.timer-primary-action:hover {
+  background: #333;
+}
+
+.timer-secondary-action {
+  border: 1px solid #d5d5d5;
+  background: #fff;
+  color: #222;
+}
+
+.timer-secondary-action:hover,
+.adjustment-buttons button:hover {
+  background: #f5f5f5;
+}
+
+#fullscreenButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.quick-adjustments {
+  margin-top: 24px;
+}
+
+.adjustment-buttons {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.adjustment-buttons button {
+  padding: 10px 12px;
+  border: 1px solid #d5d5d5;
+  background: #fff;
+  color: #222;
+}
+
+.timer-preferences {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e7e7e7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.sound-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.sound-option input {
+  width: 17px;
+  height: 17px;
+  accent-color: #1a1a1a;
+}
+
+.keyboard-hint {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  color: #777;
+  font-size: 0.76rem;
+}
+
+.keyboard-hint span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.keyboard-hint kbd {
+  min-width: 26px;
+  padding: 3px 6px;
+  border: 1px solid #d7d7d7;
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: #fafafa;
+  color: #444;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.timer-feature-grid {
+  margin: 36px 0 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.timer-feature-grid article {
+  padding: 24px;
+  border: 1px solid #e1e1e1;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.timer-feature-grid h3 {
+  margin: 0 0 9px;
+  font-size: 1rem;
+}
+
+.timer-feature-grid p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.timer-privacy-block {
+  margin-bottom: 0;
+}
+
+/* Fullscreen presentation mode */
+
+.timer-display-panel:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 3vh 6vw 8vh;
+  justify-content: flex-start;
+  background: #fff;
+  color: #1a1a1a;
+}
+
+.timer-display-panel:fullscreen .presentation-copy {
+  width: min(1100px, 90vw);
+  min-height: 16vh;
+  justify-content: flex-end;
+}
+
+.timer-display-panel:fullscreen .presentation-title {
+  font-size: clamp(2rem, 4vw, 4.5rem);
+}
+
+.timer-display-panel:fullscreen .presentation-message {
+  margin-top: 1.2vh;
+  font-size: clamp(1.1rem, 2vw, 2.1rem);
+}
+
+.timer-display-panel:fullscreen .timer-display {
+  margin: 6vh 0 4vh;
+  font-size: min(28vw, 31vh);
+}
+
+.timer-display-panel:fullscreen .progress-track {
+  width: min(1100px, 78vw);
+  height: 10px;
+}
+
+.timer-display-panel:fullscreen .timer-meta {
+  margin-top: 4vh;
+  gap: 0;
+}
+
+.timer-display-panel:fullscreen .timer-meta-item {
+  text-align: center;
+}
+
+.timer-display-panel:fullscreen .timer-meta-item span {
+  font-size: clamp(0.75rem, 1vw, 1.05rem);
+}
+
+.timer-display-panel:fullscreen .timer-meta-item strong {
+  font-size: clamp(1.15rem, 1.8vw, 2rem);
+}
+
+.timer-display-panel:fullscreen .timer-meta-divider,
+.timer-display-panel:fullscreen .timer-state-item {
+  display: none;
+}
+
+.timer-display-panel:fullscreen .presentation-copy:has(.presentation-title:empty):has(.presentation-message:empty) {
+  min-height: 9vh;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(26, 26, 26, 0.25);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .timer-text-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .timer-display-panel {
+    min-height: 360px;
+    padding: 44px 22px 36px;
+  }
+
+  .timer-display {
+    font-size: clamp(4.8rem, 20vw, 7.5rem);
+  }
+
+  .main-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .timer-primary-action {
+    grid-column: 1 / -1;
+  }
+
+  .timer-preferences {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .keyboard-hint {
+    justify-content: flex-start;
+  }
+
+  .timer-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .timer-tool-page {
+    padding-bottom: 80px;
+  }
+
+  .timer-shell {
+    border-radius: 12px;
+  }
+
+  .timer-configuration,
+  .timer-actions {
+    padding: 22px 18px;
+  }
+
+  .duration-inputs {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .duration-field {
+    width: auto;
+    flex: 1;
+  }
+
+  .timer-display-panel {
+    min-height: 320px;
+    padding-inline: 16px;
+  }
+
+  .presentation-copy {
+    min-height: 52px;
+  }
+
+  .timer-display {
+    font-size: clamp(4rem, 23vw, 6.2rem);
+  }
+
+  .progress-track {
+    width: 92%;
+  }
+
+  .timer-meta {
+    gap: 14px;
+  }
+
+  .timer-meta-divider {
+    height: 28px;
+  }
+
+  .main-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .adjustment-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../scripts/site-path.js";
 import "../styles/image-to-pdf.css";
 import UsefulDetails from "./UsefulDetails.astro";
 ---
@@ -74,7 +75,7 @@ import UsefulDetails from "./UsefulDetails.astro";
       <article><span>03</span><h2>Save and share</h2><p>Download a single PDF, ready to print, send, or keep. Your images never leave your device.</p></article>
     </section>
     <UsefulDetails>
-      <details><summary>Can I combine different image formats?</summary><p>Yes. Add JPG, PNG, and WebP images in any combination. Each image becomes one page. Convert HEIC or HEIF photos to JPG or PNG using <a href="/image-tools/">Image Tools</a> first.</p></details>
+      <details><summary>Can I combine different image formats?</summary><p>Yes. Add JPG, PNG, and WebP images in any combination. Each image becomes one page. Convert HEIC or HEIF photos to JPG or PNG using <a href={sitePath("/image-tools/")}>Image Tools</a> first.</p></details>
       <details><summary>Will my images be cropped?</summary><p>No. Images fit inside your selected margins and keep their proportions. A4 and Letter pages may have white space. Choose “Fit to image” for a page that follows the image dimensions.</p></details>
       <details><summary>What happens to image quality?</summary><p>Images keep their pixel dimensions. JPG and WebP images are re-encoded as high-quality JPEGs to apply their orientation consistently; PNG images retain transparency. Very large images above 24 megapixels are rejected to keep browser memory use manageable.</p></details>
     </UsefulDetails>

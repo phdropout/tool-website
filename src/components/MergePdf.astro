@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../scripts/site-path.js";
 import UsefulDetails from "./UsefulDetails.astro";
 import "../styles/merge-pdf.css";
 ---
@@ -89,7 +90,7 @@ import "../styles/merge-pdf.css";
       <details><summary>Can I add the same page more than once?</summary><p>Yes. Adding pages copies them into the result; it does not remove them from the source. Every copy can be moved or removed independently. The result can contain up to 500 pages.</p></details>
       <details><summary>Can I arrange pages without dragging?</summary><p>Yes. Select source pages with their checkboxes and use “Add selected,” or add the whole document with “Add all pages.” Each output page has move earlier, move later, and remove buttons. These also work on touchscreens.</p></details>
       <details><summary>Can I read a page before adding it?</summary><p>Use the expand button on any page in either pane to open a larger preview. Scroll up to zoom in and down to zoom out, then drag the page to see areas outside the view. Click outside the page or press Escape to close. Keyboard users can zoom with + and − and fit the page with 0. Your page selection and output order stay unchanged.</p></details>
-      <details><summary>Can I merge password-protected PDFs or images?</summary><p>Open and save an unlocked copy of a password-protected PDF before adding it here. For images, create a PDF first using <a href="/image-to-pdf/">Image to PDF</a>, then add that PDF to this workspace.</p></details>
+      <details><summary>Can I merge password-protected PDFs or images?</summary><p>Open and save an unlocked copy of a password-protected PDF before adding it here. For images, create a PDF first using <a href={sitePath("/image-to-pdf/")}>Image to PDF</a>, then add that PDF to this workspace.</p></details>
       <details><summary>What is preserved in the merged file?</summary><p>The tool copies your selected PDF pages, including their dimensions, rotation, and visible content. Document-level features such as bookmarks, digital signatures, attachments, and interactive form behavior are not preserved. Save completed forms as a flat PDF before merging.</p></details>
     </UsefulDetails>
   </div>

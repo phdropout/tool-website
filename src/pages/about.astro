@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../scripts/site-path.js";
 import InformationLayout from "../layouts/InformationLayout.astro";
 ---
 
@@ -11,17 +12,17 @@ import InformationLayout from "../layouts/InformationLayout.astro";
   <section>
     <h2>What you can do here</h2>
     <ul>
-      <li><a href="/image-tools/">Image Tools</a> — resize, compress, convert, and inspect image metadata.</li>
-      <li><a href="/image-to-pdf/">Image to PDF</a> — arrange images and turn them into a PDF.</li>
-      <li><a href="/merge-pdf/">Merge PDF</a> — select, reorder, and combine pages from PDFs.</li>
-      <li><a href="/countdown-timer/">Countdown Timer</a> — keep track of time with a clear fullscreen display.</li>
-      <li><a href="/media-viewer/">Photo &amp; Video Viewer</a> — browse local media, zoom into photos, and play slideshows.</li>
+      <li><a href={sitePath("/image-tools/")}>Image Tools</a> — resize, compress, convert, and inspect image metadata.</li>
+      <li><a href={sitePath("/image-to-pdf/")}>Image to PDF</a> — arrange images and turn them into a PDF.</li>
+      <li><a href={sitePath("/merge-pdf/")}>Merge PDF</a> — select, reorder, and combine pages from PDFs.</li>
+      <li><a href={sitePath("/countdown-timer/")}>Countdown Timer</a> — keep track of time with a clear fullscreen display.</li>
+      <li><a href={sitePath("/media-viewer/")}>Photo &amp; Video Viewer</a> — browse local media, zoom into photos, and play slideshows.</li>
     </ul>
   </section>
   <section>
     <h2>Your files stay with you</h2>
     <p>The current file tools process selected files in your browser. File contents are not sent to our servers for conversion, previews, or metadata reading. The media viewer reads only files or folders you choose.</p>
-    <p>You can use the tools without creating an account. Read the <a href="/privacy/">Privacy Policy</a> for details about local storage and website requests.</p>
+    <p>You can use the tools without creating an account. Read the <a href={sitePath("/privacy/")}>Privacy Policy</a> for details about local storage and website requests.</p>
   </section>
   <section>
     <h2>Built for everyday use</h2>

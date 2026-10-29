@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../scripts/site-path.js";
 import UsefulDetails from "./UsefulDetails.astro";
 import "../styles/media-viewer.css";
 ---
@@ -76,7 +77,7 @@ import "../styles/media-viewer.css";
     </div>
     <UsefulDetails>
       <details><summary>Are my photos or videos uploaded?</summary><p>No. The gallery reads only the files you choose, using local browser previews. Closing or refreshing this page clears the collection; no library or file contents are saved.</p></details>
-      <details><summary>Which files can I view?</summary><p>The gallery recognizes JPG, PNG, WebP, GIF, AVIF, BMP, SVG, HEIC, and HEIF images, plus common video containers such as MP4, WebM, and MOV. Actual playback depends on your browser and the file’s encoding. Unsupported videos show a message instead of playing. HEIC and HEIF require native browser support; you can also convert them first using <a href="/image-tools/">Image Tools</a>.</p></details>
+      <details><summary>Which files can I view?</summary><p>The gallery recognizes JPG, PNG, WebP, GIF, AVIF, BMP, SVG, HEIC, and HEIF images, plus common video containers such as MP4, WebM, and MOV. Actual playback depends on your browser and the file’s encoding. Unsupported videos show a message instead of playing. HEIC and HEIF require native browser support; you can also convert them first using <a href={sitePath("/image-tools/")}>Image Tools</a>.</p></details>
       <details><summary>What happens with other files and subfolders?</summary><p>Folder selection includes subfolders. Documents, archives, hidden files, and other unrelated formats are skipped and counted in the summary. Use the folder filter to narrow the gallery to a subfolder and its descendants.</p></details>
       <details><summary>Can I open a very large folder?</summary><p>The gallery indexes up to 10,000 media files and displays 60 at a time. Small image thumbnails load as they come into view and use a bounded cache. Videos are shown as play tiles and are loaded only when opened, keeping the gallery lighter.</p></details>
       <details><summary>Does the date sort use the date a photo was taken?</summary><p>This first version sorts by the file’s last-modified date, not the camera’s embedded date. File names and folder paths are also searchable. The viewer does not edit, rename, or delete any files.</p></details>

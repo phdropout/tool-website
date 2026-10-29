@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../scripts/site-path.js";
 import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
@@ -17,7 +18,7 @@ const { title, description, eyebrow = "Tools" } = Astro.props;
       <p class="information-intro">{description}</p>
     </header>
     <div class="information-content"><slot /></div>
-    <a class="information-back" href="/#tools">Browse the tools <span aria-hidden="true">→</span></a>
+    <a class="information-back" href={sitePath("/#tools")}>Browse the tools <span aria-hidden="true">→</span></a>
   </article>
 </BaseLayout>
 

@@ -1,69 +1,86 @@
 ---
 import "../styles/image-tools.css";
+import UsefulDetails from "./UsefulDetails.astro";
 
 interface Props {
-  activeTab?: "resize" | "compress" | "convert";
+  activeTab?: "resize" | "compress" | "convert" | "metadata";
 }
 
 const { activeTab = "resize" } = Astro.props;
 ---
 
-<section class="tool-page">
+<section class="tool-page image-tool-page">
   <div class="container">
     <div class="tool-intro">
-      <p class="eyebrow">Image Tools</p>
+      <p class="eyebrow">Your everyday image workspace</p>
 
       <h1>Image Tools</h1>
 
       <p>
-        Resize, compress, convert, and inspect image metadata directly in your browser.
-        Your image stays on your device.
+        Resize, compress, convert, and explore image metadata.
+        Everything you need in one simple workspace.
       </p>
+      <div class="image-privacy-note">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 4 6v6c0 4 8 9 8 9s8-5 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg>
+        Files stay on your device <span aria-hidden="true">·</span> No sign-up needed
+      </div>
     </div>
 
     <div class="image-tools-card" data-image-tools data-active-tab={activeTab}>
       <div class="tool-tabs" role="tablist" aria-label="Image tools">
         <button
           type="button"
-          class="tool-tab"
+          class:list={["tool-tab", { active: activeTab === "resize" }]}
+          aria-selected={activeTab === "resize" ? "true" : "false"}
+          tabindex={activeTab === "resize" ? 0 : -1}
           id="resizeTab"
           role="tab"
           aria-controls="resizePanel"
           data-tab="resize"
         >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v5m11 11h5v-5M4 4l6 6m10 10-6-6M15 4h5v5M4 15v5h5"/></svg>
           Resize
         </button>
 
         <button
           type="button"
-          class="tool-tab"
+          class:list={["tool-tab", { active: activeTab === "compress" }]}
+          aria-selected={activeTab === "compress" ? "true" : "false"}
+          tabindex={activeTab === "compress" ? 0 : -1}
           id="compressTab"
           role="tab"
           aria-controls="compressPanel"
           data-tab="compress"
         >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l6 6m0-5v5H5m15 10-6-6m0 5v-5h5M15 4h5v5M4 15v5h5"/></svg>
           Compress
         </button>
 
         <button
           type="button"
-          class="tool-tab"
+          class:list={["tool-tab", { active: activeTab === "convert" }]}
+          aria-selected={activeTab === "convert" ? "true" : "false"}
+          tabindex={activeTab === "convert" ? 0 : -1}
           id="convertTab"
           role="tab"
           aria-controls="convertPanel"
           data-tab="convert"
         >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16m-4-4 4 4-4 4M20 16H4m4-4-4 4 4 4"/></svg>
           Convert
         </button>
 
         <button
           type="button"
-          class="tool-tab"
+          class:list={["tool-tab", { active: activeTab === "metadata" }]}
+          aria-selected={activeTab === "metadata" ? "true" : "false"}
+          tabindex={activeTab === "metadata" ? 0 : -1}
           id="metadataTab"
           role="tab"
           aria-controls="metadataPanel"
           data-tab="metadata"
         >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></svg>
           Metadata
         </button>
       </div>
@@ -77,10 +94,13 @@ const { activeTab = "resize" } = Astro.props;
         />
 
         <div class="upload-content">
-          <h2>Choose an image</h2>
+          <div class="upload-symbol" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="9" width="34" height="30" rx="5"/><circle cx="17" cy="19" r="3"/><path d="m8 33 10-9 8 7 6-6 9 8"/></svg>
+          </div>
+          <h2>Start with your image</h2>
 
           <p>
-            Drag and drop an image here, or choose a file from your device.
+            Drop it here, or choose a file to get started.
           </p>
 
           <button type="button" id="chooseImageButton">
@@ -371,10 +391,10 @@ const { activeTab = "resize" } = Astro.props;
             </div>
           </section>
 
-          <p class="error-message" id="errorMessage" role="alert" hidden></p>
         </div>
       </div>
 
+      <p class="error-message" id="errorMessage" role="alert" hidden></p>
       <div class="result-panel" id="resultPanel" hidden>
         <div>
           <p class="eyebrow" id="resultEyebrow">Ready</p>
@@ -409,7 +429,7 @@ const { activeTab = "resize" } = Astro.props;
   </div>
 </section>
 
-<section class="tool-info-section">
+<section class="tool-info-section image-tool-info">
   <div class="container info-container">
     <div class="info-block">
       <p class="eyebrow">One workspace</p>
@@ -430,55 +450,50 @@ const { activeTab = "resize" } = Astro.props;
       </p>
     </div>
 
-    <div class="faq-block">
-      <p class="eyebrow">FAQ</p>
-      <h2>Frequently asked questions</h2>
+    <UsefulDetails>
+      <details>
+        <summary>Which image formats are supported?</summary>
+        <p>
+          You can open JPG, PNG, WebP, HEIC, and HEIF images. The current output
+          formats are JPG, PNG, and WebP.
+        </p>
+      </details>
 
-      <div class="faq-list">
-        <details>
-          <summary>Which image formats are supported?</summary>
-          <p>
-            You can open JPG, PNG, WebP, HEIC, and HEIF images. The current output
-            formats are JPG, PNG, and WebP.
-          </p>
-        </details>
+      <details>
+        <summary>Why are Resize, Compress, and Convert separate tabs?</summary>
+        <p>
+          Each task has a different goal. Resize changes dimensions, Compress focuses
+          on file size, and Convert changes the image format. Keeping them in one
+          workspace avoids duplicate uploads while keeping the controls focused.
+        </p>
+      </details>
 
-        <details>
-          <summary>Why are Resize, Compress, and Convert separate tabs?</summary>
-          <p>
-            Each task has a different goal. Resize changes dimensions, Compress focuses
-            on file size, and Convert changes the image format. Keeping them in one
-            workspace avoids duplicate uploads while keeping the controls focused.
-          </p>
-        </details>
+      <details>
+        <summary>Can HEIC or HEIF files be compressed directly?</summary>
+        <p>
+          No. HEIC and HEIF files are handled in the Convert tab instead. Converting
+          them to JPG, PNG, or WebP can increase file size, so the Compress tab stays
+          focused on JPG, PNG, and WebP compression.
+        </p>
+      </details>
 
-        <details>
-          <summary>Can HEIC or HEIF files be compressed directly?</summary>
-          <p>
-            No. HEIC and HEIF files are handled in the Convert tab instead. Converting
-            them to JPG, PNG, or WebP can increase file size, so the Compress tab stays
-            focused on JPG, PNG, and WebP compression.
-          </p>
-        </details>
+      <details>
+        <summary>What metadata can the tool display?</summary>
+        <p>
+          The Metadata tab always shows basic file details such as format, file size,
+          dimensions, and last-modified time. When present, it can also display
+          embedded Exif, IPTC, XMP, ICC, GPS, and camera information.
+        </p>
+      </details>
 
-        <details>
-          <summary>What metadata can the tool display?</summary>
-          <p>
-            The Metadata tab always shows basic file details such as format, file size,
-            dimensions, and last-modified time. When present, it can also display
-            embedded Exif, IPTC, XMP, ICC, GPS, and camera information.
-          </p>
-        </details>
-
-        <details>
-          <summary>Is my image uploaded anywhere?</summary>
-          <p>
-            No. The processing is performed locally in your browser using browser-side
-            image-processing libraries.
-          </p>
-        </details>
-      </div>
-    </div>
+      <details>
+        <summary>Is my image uploaded anywhere?</summary>
+        <p>
+          No. The processing is performed locally in your browser using browser-side
+          image-processing libraries.
+        </p>
+      </details>
+    </UsefulDetails>
   </div>
 </section>
 

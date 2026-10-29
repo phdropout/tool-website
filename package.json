@@ -3,10 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.13.0"
   },
   "scripts": {
+    "predev": "node scripts/prepare-pdfjs-assets.mjs",
     "dev": "astro dev",
+    "prebuild": "node scripts/prepare-pdfjs-assets.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -15,7 +17,9 @@
     "@pdf-lib/upng": "^1.0.1",
     "astro": "^7.3.1",
     "exifreader": "^4.45.0",
-    "libheif-js": "^1.23.2"
+    "libheif-js": "^1.23.2",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.4.299"
   },
   "allowScripts": {
     "esbuild": true

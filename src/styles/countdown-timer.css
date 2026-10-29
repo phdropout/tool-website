@@ -1,19 +1,56 @@
 .timer-tool-page {
-  padding-bottom: 100px;
+  --timer-accent: var(--site-accent);
+  --timer-ink: var(--site-ink);
+  --timer-muted: var(--site-muted);
+  padding: 64px 0 100px;
+  background: var(--site-background);
+  color: var(--timer-ink);
+}
+
+.timer-tool-page .tool-intro {
+  max-width: 680px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.timer-tool-page .eyebrow,
+.timer-info-section .eyebrow {
+  color: var(--site-accent);
+  font-size: 0.75rem;
+}
+
+.timer-tool-page .tool-intro h1 {
+  margin: 0 0 16px;
+  font-size: clamp(2.5rem, 6vw, 3.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.timer-tool-page .tool-intro > p:last-child {
+  max-width: 580px;
+  margin: 0 auto;
+  color: var(--timer-muted);
+  font-size: 1.05rem;
+}
+
+.timer-shell button {
+  transition: background-color 150ms ease, border-color 150ms ease;
 }
 
 .timer-shell {
-  max-width: 950px;
+  max-width: 1040px;
+  margin-inline: auto;
+  box-shadow: 0 12px 40px -24px var(--site-shadow);
   overflow: hidden;
-  border: 1px solid #e2e2e2;
-  border-radius: 16px;
-  background: #fff;
+  border: 1px solid var(--site-border);
+  border-radius: 20px;
+  background: var(--site-surface);
 }
 
 .timer-configuration {
   padding: 28px;
-  border-bottom: 1px solid #e7e7e7;
-  background: #fafafa;
+  border-bottom: 1px solid var(--site-border);
+  background: var(--site-surface-soft);
 }
 
 .timer-text-fields {
@@ -29,7 +66,7 @@
 }
 
 .timer-field > span,
-.control-label {
+.timer-shell .control-label {
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -38,17 +75,17 @@
   width: 100%;
   min-width: 0;
   padding: 12px 13px;
-  border: 1px solid #d6d6d6;
+  border: 1px solid var(--site-border-strong);
   border-radius: 8px;
   outline: none;
-  background: #fff;
-  color: #1a1a1a;
+  background: var(--site-surface);
+  color: var(--timer-ink);
   font: inherit;
 }
 
 .timer-field input:focus,
 .duration-field input:focus {
-  border-color: #555;
+  border-color: var(--timer-accent);
 }
 
 .duration-block {
@@ -70,11 +107,11 @@
   width: 100%;
   min-width: 0;
   padding: 12px 8px;
-  border: 1px solid #d6d6d6;
+  border: 1px solid var(--site-border-strong);
   border-radius: 8px;
   outline: none;
-  background: #fff;
-  color: #1a1a1a;
+  background: var(--site-surface);
+  color: var(--timer-ink);
   font: inherit;
   font-size: 1.05rem;
   font-weight: 600;
@@ -82,14 +119,14 @@
 }
 
 .duration-field span {
-  color: #777;
+  color: var(--timer-muted);
   font-size: 0.76rem;
   text-align: center;
 }
 
 .duration-colon {
   margin-top: 8px;
-  color: #777;
+  color: var(--timer-muted);
   font-size: 1.6rem;
   font-weight: 700;
 }
@@ -104,8 +141,8 @@
   justify-content: center;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 42%, rgba(0, 0, 0, 0.024), transparent 42%),
-    #fff;
+    radial-gradient(circle at 50% 42%, rgba(15, 118, 110, 0.045), transparent 42%),
+    var(--site-surface);
   text-align: center;
 }
 
@@ -119,7 +156,7 @@
 
 .presentation-title {
   margin: 0;
-  color: #1a1a1a;
+  color: var(--timer-ink);
   font-size: clamp(1.25rem, 2.5vw, 1.85rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -127,7 +164,7 @@
 
 .presentation-message {
   margin: 7px 0 0;
-  color: #666;
+  color: var(--timer-muted);
   font-size: 0.98rem;
 }
 
@@ -138,7 +175,7 @@
 
 .timer-display {
   margin: 18px 0 24px;
-  color: #1a1a1a;
+  color: var(--timer-accent);
   font-size: clamp(5.5rem, 14vw, 9rem);
   font-weight: 700;
   line-height: 0.9;
@@ -152,14 +189,14 @@
   height: 7px;
   overflow: hidden;
   border-radius: 999px;
-  background: #ebebeb;
+  background: var(--site-track);
 }
 
 .progress-bar {
   width: 100%;
   height: 100%;
   border-radius: inherit;
-  background: #1a1a1a;
+  background: var(--timer-accent);
   transform: scaleX(1);
   transform-origin: left center;
   transition: transform 0.2s linear, background 0.2s ease;
@@ -180,7 +217,7 @@
 }
 
 .timer-meta-item span {
-  color: #888;
+  color: var(--timer-muted);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -194,23 +231,25 @@
 .timer-meta-divider {
   width: 1px;
   height: 32px;
-  background: #e2e2e2;
+  background: var(--site-border);
 }
 
-.timer-display-panel.timer-warning .timer-display,
+.timer-display-panel.timer-warning .timer-display {
+  color: var(--site-warning);
+}
+
 .timer-display-panel.timer-warning .progress-bar {
-  color: #9a6200;
-  background: #9a6200;
+  background: var(--site-warning);
 }
 
 .timer-display-panel.timer-critical .timer-display,
 .timer-display-panel.timer-finished .timer-display {
-  color: #a22222;
+  color: var(--site-error);
 }
 
 .timer-display-panel.timer-critical .progress-bar,
 .timer-display-panel.timer-finished .progress-bar {
-  background: #a22222;
+  background: var(--site-error);
 }
 
 .timer-display-panel.timer-finished .timer-display {
@@ -219,7 +258,7 @@
 
 .timer-actions {
   padding: 26px 28px 28px;
-  border-top: 1px solid #e7e7e7;
+  border-top: 1px solid var(--site-border);
 }
 
 .main-actions {
@@ -245,25 +284,27 @@
 
 .timer-primary-action {
   border: 0;
-  background: #1a1a1a;
-  color: #fff;
+  background: var(--site-button);
+  color: var(--site-button-text);
   font-size: 0.98rem;
   font-weight: 700;
 }
 
 .timer-primary-action:hover {
-  background: #333;
+  background: var(--site-button-hover);
 }
 
 .timer-secondary-action {
-  border: 1px solid #d5d5d5;
-  background: #fff;
-  color: #222;
+  border: 1px solid var(--site-border-strong);
+  background: var(--site-surface);
+  color: var(--timer-ink);
 }
 
 .timer-secondary-action:hover,
 .adjustment-buttons button:hover {
-  background: #f5f5f5;
+  background: var(--site-tint);
+  border-color: var(--timer-accent);
+  color: var(--timer-accent);
 }
 
 #fullscreenButton {
@@ -286,15 +327,15 @@
 
 .adjustment-buttons button {
   padding: 10px 12px;
-  border: 1px solid #d5d5d5;
-  background: #fff;
-  color: #222;
+  border: 1px solid var(--site-border-strong);
+  background: var(--site-surface);
+  color: var(--timer-ink);
 }
 
 .timer-preferences {
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid #e7e7e7;
+  border-top: 1px solid var(--site-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -312,7 +353,7 @@
 .sound-option input {
   width: 17px;
   height: 17px;
-  accent-color: #1a1a1a;
+  accent-color: var(--timer-accent);
 }
 
 .keyboard-hint {
@@ -321,7 +362,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 12px;
-  color: #777;
+  color: var(--timer-muted);
   font-size: 0.76rem;
 }
 
@@ -334,11 +375,11 @@
 .keyboard-hint kbd {
   min-width: 26px;
   padding: 3px 6px;
-  border: 1px solid #d7d7d7;
+  border: 1px solid var(--site-border);
   border-bottom-width: 2px;
   border-radius: 5px;
-  background: #fafafa;
-  color: #444;
+  background: var(--site-surface-soft);
+  color: var(--site-ink);
   font: inherit;
   font-size: 0.72rem;
   font-weight: 600;
@@ -349,14 +390,11 @@
   margin: 36px 0 64px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 40px;
 }
 
 .timer-feature-grid article {
-  padding: 24px;
-  border: 1px solid #e1e1e1;
-  border-radius: 12px;
-  background: #fff;
+  padding: 0;
 }
 
 .timer-feature-grid h3 {
@@ -366,13 +404,46 @@
 
 .timer-feature-grid p {
   margin: 0;
-  color: #666;
+  color: var(--site-muted);
   font-size: 0.9rem;
   line-height: 1.55;
 }
 
+.timer-info-section {
+  padding: 64px 0 90px;
+  background: var(--site-background);
+  color: var(--site-ink);
+}
+
+.timer-info-section .info-container {
+  max-width: 1040px;
+}
+
+.timer-info-section h2 {
+  margin: 0 0 16px;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.timer-info-section .info-block > p:last-child {
+  max-width: 720px;
+  color: var(--site-muted);
+}
+
 .timer-privacy-block {
   margin-bottom: 0;
+  padding: 24px 0 0;
+  border-top: 1px solid var(--site-border);
+}
+
+.timer-privacy-block h2 {
+  font-size: 1.2rem;
+}
+
+.timer-privacy-block p {
+  margin: 0;
+  color: var(--site-muted);
 }
 
 /* Fullscreen presentation mode */
@@ -383,8 +454,8 @@
   min-height: 100vh;
   padding: 3vh 6vw 8vh;
   justify-content: flex-start;
-  background: #fff;
-  color: #1a1a1a;
+  background: var(--site-surface);
+  color: var(--timer-ink);
 }
 
 .timer-display-panel:fullscreen .presentation-copy {
@@ -438,9 +509,9 @@
   min-height: 9vh;
 }
 
-button:focus-visible,
-input:focus-visible {
-  outline: 3px solid rgba(26, 26, 26, 0.25);
+.timer-shell button:focus-visible,
+.timer-shell input:focus-visible {
+  outline: 3px solid var(--timer-accent);
   outline-offset: 3px;
 }
 
@@ -482,7 +553,7 @@ input:focus-visible {
 
 @media (max-width: 520px) {
   .timer-tool-page {
-    padding-bottom: 80px;
+    padding: 44px 0 80px;
   }
 
   .timer-shell {
@@ -535,5 +606,11 @@ input:focus-visible {
 
   .adjustment-buttons {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timer-shell * {
+    transition: none;
   }
 }

@@ -1,0 +1,87 @@
+---
+import UsefulDetails from "./UsefulDetails.astro";
+import "../styles/media-viewer.css";
+---
+
+<section class="mv-page">
+  <div class="container mv-container">
+    <header class="mv-intro">
+      <p class="eyebrow">Your memories. A little more room.</p>
+      <h1>Photo &amp; Video Viewer</h1>
+      <p>Choose a folder and settle into your photos and videos. A simple gallery, with everything kept on your device.</p>
+      <span>No uploads · No account · No changes to your files</span>
+    </header>
+
+    <div class="mv-tool" data-media-viewer>
+      <input data-directory-input type="file" multiple webkitdirectory hidden />
+      <input data-file-input type="file" multiple accept="image/*,video/*,.heic,.heif,.mkv,.avi,.m4v" hidden />
+      <div class="mv-welcome" data-welcome>
+        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 14V9h14l5 5h19v25H5V14Z"/><circle cx="17" cy="23" r="3"/><path d="m6 34 11-7 8 6 7-9 10 10"/></svg>
+        <h2>A folder full of moments</h2>
+        <p>Browse photos and videos together. Subfolders are included; unrelated files are skipped.</p>
+        <div class="mv-choices"><button class="mv-primary" type="button" data-choose-folder>Choose folder</button><button class="mv-secondary" type="button" data-choose-files>Choose files instead</button></div>
+        <p class="mv-note">Your browser gives this page access only to the files you select. Nothing is sent to a server.</p>
+      </div>
+
+      <section data-library hidden aria-label="Media library">
+        <div class="mv-library-heading">
+          <div><h2 data-library-name>Your collection</h2><p data-summary></p></div>
+          <div class="mv-choices"><button class="mv-secondary" type="button" data-choose-folder>Change folder</button><button class="mv-secondary" type="button" data-choose-files>Choose files</button><button class="mv-text" type="button" data-clear>Clear</button></div>
+        </div>
+        <div class="mv-filters">
+          <label>Folder<select data-folder><option value="">All folders</option></select></label>
+          <label>Show<select data-kind><option value="all">Photos &amp; videos</option><option value="image">Photos only</option><option value="video">Videos only</option></select></label>
+          <label>Sort by<select data-sort><option value="name">Name</option><option value="newest">Newest modified</option><option value="oldest">Oldest modified</option></select></label>
+          <label class="mv-search">Find a file<input data-search type="search" placeholder="Search names or folders…" autocomplete="off" /></label>
+        </div>
+        <p class="mv-count" data-filter-count role="status" aria-live="polite"></p>
+        <p class="mv-no-results" data-no-results hidden>No matching photos or videos. Try another folder or clear the filters.</p>
+        <ul class="mv-grid" data-gallery aria-label="Photos and videos"></ul>
+        <nav class="mv-pagination" aria-label="Gallery pages">
+          <button class="mv-secondary" data-gallery-previous type="button">← Previous</button>
+          <span data-gallery-page></span>
+          <button class="mv-secondary" data-gallery-next type="button">Next →</button>
+        </nav>
+      </section>
+      <p class="mv-status" data-status role="status" aria-live="polite"></p>
+      <noscript><p>Enable JavaScript to browse files on your device.</p></noscript>
+
+      <dialog class="mv-dialog" data-viewer aria-label="Photo and video viewer" aria-describedby="mv-viewer-help">
+        <div class="mv-viewer-shell" data-viewer-shell>
+          <p class="sr-only" id="mv-viewer-help">Use the left and right arrows to browse. Scroll to zoom images, then drag to pan. Escape closes the viewer. Videos use their own playback controls.</p>
+          <header class="mv-viewer-toolbar">
+            <div class="mv-viewer-title"><strong data-viewer-name></strong><span data-viewer-position></span></div>
+            <div class="mv-viewer-actions">
+              <button data-slideshow type="button" aria-pressed="false">Slideshow</button>
+              <button data-fit type="button">Fit image</button>
+              <button data-fullscreen type="button">Fullscreen</button>
+              <button data-close type="button" aria-label="Close viewer" autofocus>×</button>
+            </div>
+          </header>
+          <div class="mv-viewer-body">
+            <button class="mv-nav mv-nav-previous" data-previous type="button" aria-label="Previous file">‹</button>
+            <div class="mv-stage" data-stage></div>
+            <button class="mv-nav mv-nav-next" data-next type="button" aria-label="Next file">›</button>
+            <p class="mv-viewer-message" data-viewer-message role="status" aria-live="polite"></p>
+          </div>
+          <footer class="mv-viewer-footer"><span data-viewer-details></span><span data-viewer-hint></span></footer>
+        </div>
+      </dialog>
+    </div>
+
+    <div class="mv-guide">
+      <article><span>01</span><h2>Choose your collection</h2><p>Select a folder or individual files. Explore its subfolders or see everything together.</p></article>
+      <article><span>02</span><h2>Take a closer look</h2><p>Open a thumbnail, move between files with the arrow keys, or zoom and drag to inspect an image.</p></article>
+      <article><span>03</span><h2>Make yourself comfortable</h2><p>Play a video, enter fullscreen, or start a five-second photo slideshow. Your originals stay untouched.</p></article>
+    </div>
+    <UsefulDetails>
+      <details><summary>Are my photos or videos uploaded?</summary><p>No. The gallery reads only the files you choose, using local browser previews. Closing or refreshing this page clears the collection; no library or file contents are saved.</p></details>
+      <details><summary>Which files can I view?</summary><p>The gallery recognizes JPG, PNG, WebP, GIF, AVIF, BMP, SVG, HEIC, and HEIF images, plus common video containers such as MP4, WebM, and MOV. Actual playback depends on your browser and the file’s encoding. Unsupported videos show a message instead of playing. HEIC and HEIF require native browser support; you can also convert them first using <a href="/image-tools/">Image Tools</a>.</p></details>
+      <details><summary>What happens with other files and subfolders?</summary><p>Folder selection includes subfolders. Documents, archives, hidden files, and other unrelated formats are skipped and counted in the summary. Use the folder filter to narrow the gallery to a subfolder and its descendants.</p></details>
+      <details><summary>Can I open a very large folder?</summary><p>The gallery indexes up to 10,000 media files and displays 60 at a time. Small image thumbnails load as they come into view and use a bounded cache. Videos are shown as play tiles and are loaded only when opened, keeping the gallery lighter.</p></details>
+      <details><summary>Does the date sort use the date a photo was taken?</summary><p>This first version sorts by the file’s last-modified date, not the camera’s embedded date. File names and folder paths are also searchable. The viewer does not edit, rename, or delete any files.</p></details>
+    </UsefulDetails>
+  </div>
+</section>
+
+<script src="../scripts/media-viewer.js"></script>

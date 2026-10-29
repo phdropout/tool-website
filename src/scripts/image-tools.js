@@ -1,7 +1,3 @@
-import UPNG from "@pdf-lib/upng";
-import libheif from "libheif-js";
-import ExifReader from "exifreader";
-
 const root = document.querySelector("[data-image-tools]");
 
 if (root) {
@@ -78,6 +74,9 @@ function initializeImageTools(root) {
   let aspectRatio = 1;
   let editingDimension = false;
   let metadataLoadedForFile = null;
+  let metadataPendingForFile = null;
+  let isLoadingImage = false;
+  let dragDepth = 0;
 
   const MAX_DIMENSION = 12000;
   const MAX_PIXEL_COUNT = 100_000_000;
@@ -102,26 +101,42 @@ function initializeImageTools(root) {
 
   chooseImageButton.addEventListener("click", () => imageInput.click());
 
-  imageInput.addEventListener("change", () => {
+  imageInput.addEventListener("change", async () => {
     const file = imageInput.files?.[0];
-    if (file) loadImage(file);
+    if (file) await loadImage(file);
   });
 
-  uploadArea.addEventListener("dragover", (event) => {
+  root.addEventListener("dragenter", (event) => {
+    if (!event.dataTransfer?.types.includes("Files")) return;
     event.preventDefault();
+    dragDepth++;
+    root.classList.add("image-file-dragging");
     uploadArea.classList.add("dragging");
   });
 
-  uploadArea.addEventListener("dragleave", () => {
+  root.addEventListener("dragover", (event) => {
+    if (!event.dataTransfer?.types.includes("Files")) return;
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "copy";
+  });
+
+  root.addEventListener("dragleave", () => {
+    dragDepth = Math.max(0, dragDepth - 1);
+    if (dragDepth) return;
+    root.classList.remove("image-file-dragging");
     uploadArea.classList.remove("dragging");
   });
 
-  uploadArea.addEventListener("drop", (event) => {
+  root.addEventListener("drop", async (event) => {
+    const file = event.dataTransfer?.files?.[0];
+    if (!file) return;
     event.preventDefault();
+    event.stopPropagation();
+    dragDepth = 0;
+    root.classList.remove("image-file-dragging");
     uploadArea.classList.remove("dragging");
 
-    const file = event.dataTransfer?.files?.[0];
-    if (file) loadImage(file);
+    await loadImage(file);
   });
 
   resetButton.addEventListener("click", resetTool);
@@ -239,6 +254,7 @@ function initializeImageTools(root) {
   }
 
   async function loadImage(file) {
+    if (isLoadingImage) return;
     hideError();
     hideResult();
 
@@ -248,6 +264,9 @@ function initializeImageTools(root) {
       showError("Please choose a JPG, PNG, WebP, HEIC, or HEIF image.");
       return;
     }
+
+    isLoadingImage = true;
+    chooseImageButton.disabled = true;
 
     currentFile = file;
     currentSourceType = sourceType;
@@ -282,6 +301,8 @@ function initializeImageTools(root) {
       currentSourceType = null;
       originalImage = null;
       revokePreviewUrl();
+      workspace.hidden = true;
+      uploadArea.hidden = false;
 
       showError(
         isHeicType(sourceType)
@@ -289,6 +310,7 @@ function initializeImageTools(root) {
           : "This image could not be opened. Try another file."
       );
     } finally {
+      isLoadingImage = false;
       chooseImageButton.disabled = false;
       chooseImageButton.textContent = "Choose image";
     }
@@ -467,7 +489,9 @@ function initializeImageTools(root) {
     return encodeCanvasImage(width, height, outputType, qualityPercent / 100);
   }
 
-  function encodePng(width, height, qualityPercent) {
+  async function encodePng(width, height, qualityPercent) {
+    const module = await import("@pdf-lib/upng");
+    const UPNG = module.default?.default ?? module.default;
     const canvas = drawImageToCanvas(width, height, "image/png");
     const context = canvas.getContext("2d", { willReadFrequently: true });
 
@@ -533,6 +557,9 @@ function initializeImageTools(root) {
   }
 
   async function decodeHeicToPng(file) {
+    const module = await import("libheif-js");
+    let libheif = module.default ?? module;
+    if (typeof libheif.HeifDecoder !== "function") libheif = await libheif;
     const arrayBuffer = await file.arrayBuffer();
     const decoder = new libheif.HeifDecoder();
     const decodedImages = decoder.decode(new Uint8Array(arrayBuffer));
@@ -659,18 +686,21 @@ function initializeImageTools(root) {
 
     populateBasicMetadata();
 
-    if (metadataLoadedForFile === currentFile) {
+    if (metadataLoadedForFile === currentFile || metadataPendingForFile === currentFile) {
       return;
     }
+
+    const file = currentFile;
+    metadataPendingForFile = file;
 
     metadataStatus.textContent = "Reading metadata…";
     metadataTable.replaceChildren();
     metadataEmpty.hidden = true;
 
     try {
-      const tags = await ExifReader.load(currentFile, {
-        expanded: true,
-      });
+      const { readImageMetadata } = await import("./image-metadata.js");
+      const tags = await readImageMetadata(file);
+      if (currentFile !== file) return;
 
       const rows = collectMetadataRows(tags);
 
@@ -678,6 +708,7 @@ function initializeImageTools(root) {
 
       if (rows.length === 0) {
         metadataEmpty.hidden = false;
+        metadataEmpty.textContent = "No additional embedded metadata was found in this image.";
         metadataStatus.textContent = "No embedded metadata found";
       } else {
         metadataEmpty.hidden = true;
@@ -704,15 +735,18 @@ function initializeImageTools(root) {
         metadataTable.appendChild(fragment);
       }
 
-      metadataLoadedForFile = currentFile;
+      metadataLoadedForFile = file;
     } catch (error) {
+      if (currentFile !== file) return;
       console.warn("Metadata could not be read:", error);
       metadataTable.replaceChildren();
       metadataEmpty.hidden = false;
-      metadataEmpty.textContent =
-        "No readable embedded metadata was found in this image.";
-      metadataStatus.textContent = "Metadata unavailable";
-      metadataLoadedForFile = currentFile;
+      const readerUnavailable = error.name === "MetadataReaderLoadError";
+      metadataEmpty.textContent = readerUnavailable ? error.message :
+        "The embedded metadata could not be read. Switch to another tab and back to retry, or try another image. Basic file details are still available above.";
+      metadataStatus.textContent = readerUnavailable ? "Metadata reader could not load" : "Metadata could not be read";
+    } finally {
+      if (metadataPendingForFile === file) metadataPendingForFile = null;
     }
   }
 

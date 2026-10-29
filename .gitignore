@@ -5,6 +5,8 @@ dist/
 
 # dependencies
 node_modules/
+# Generated from pdfjs-dist before dev/build
+public/pdfjs/
 
 # logs
 npm-debug.log*

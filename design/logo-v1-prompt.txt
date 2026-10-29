@@ -1,0 +1,10 @@
+Generated with the built-in imagegen tool. Transparent PNG output.
+
+Use case: logo-brand
+Asset type: standalone website logo mark, transparent PNG
+Primary request: Create one polished, original logo for a clean website of free browser utilities: image editing, PDF conversion, PDF merging, and timers.
+Subject: A compact abstract mark suggesting several useful tools coming together in one workspace, using three or four interlocking rounded geometric elements and intentional negative space. Simple, memorable silhouette, legible at favicon scale.
+Style: flat, precise, vector-like graphic design with balanced geometry. Calm and practical.
+Color palette: a single mid-tone teal (#299C91), chosen to remain visible on both pale neutral and dark slate website backgrounds.
+Composition: centered single symbol on a square canvas, modest even transparent padding, fill most of the canvas.
+Constraints: genuinely transparent background; no text, lettering, slogans, watermark, gradients, shadows, mockups, presentation boards, extra variations, or literal wrench imagery. One finished logo only.

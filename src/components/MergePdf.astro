@@ -1,0 +1,98 @@
+---
+import UsefulDetails from "./UsefulDetails.astro";
+import "../styles/merge-pdf.css";
+---
+
+<section class="mp-page">
+  <div class="container mp-container">
+    <header class="mp-intro">
+      <p class="eyebrow">The right pages. In the right order.</p>
+      <h1>Merge PDF</h1>
+      <p>Pick the pages you need and bring them together in one document.</p>
+      <span>Files stay on your device · Free, no sign-up</span>
+    </header>
+
+    <div class="mp-tool" data-merge-pdf>
+      <input data-files type="file" accept="application/pdf,.pdf" multiple hidden />
+      <div class="mp-upload" data-upload>
+        <svg viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M28 5H12v33h24V13l-8-8Z M28 5v9h8 M7 14H5v29h24v-2 M18 22h12 M18 28h12"/></svg>
+        <h2>A fresh start for your PDFs</h2>
+        <p>Drop your PDFs here, then choose the pages to bring together.</p>
+        <button class="mp-primary" data-choose type="button">Choose PDFs <span aria-hidden="true">↑</span></button>
+        <p class="mp-limits">Up to 20 PDFs · 25 MB per file · 100 MB and 300 source pages total</p>
+      </div>
+
+      <div class="mp-workspace" data-workspace hidden>
+        <div class="mp-editor">
+          <section class="mp-source" aria-labelledby="mp-source-heading">
+            <div class="mp-heading-row">
+              <div class="mp-heading-copy"><p class="mp-label">Source pages</p><h2 id="mp-source-heading" data-source-name></h2><p data-source-count></p></div>
+              <div class="mp-buttons">
+                <button class="mp-secondary" data-add-selected type="button" disabled>Add selected <span data-selected-count></span></button>
+                <button class="mp-primary" data-add-all type="button">Add all pages</button>
+              </div>
+            </div>
+            <p class="mp-help">Select pages with the checkboxes, then drag them below or choose “Add selected.”</p>
+            <ol class="mp-source-strip" data-source-pages aria-label="Pages in the selected PDF"></ol>
+          </section>
+
+          <section class="mp-output" aria-labelledby="mp-output-heading">
+            <div class="mp-heading-row">
+              <div><p class="mp-label">Resulting document</p><h2 id="mp-output-heading">Your merged PDF <span class="mp-count" data-output-count>0 pages</span></h2></div>
+              <button class="mp-text" data-clear-output type="button" disabled>Clear pages</button>
+            </div>
+            <p class="mp-help">Pages are exported in this order. Drop onto a page to insert before it, or into the space after the pages to append.</p>
+            <div class="mp-output-area" data-output-area>
+              <p class="mp-empty" data-empty>Drag pages here to start your merged PDF.<br /><span>Or use “Add all pages” above.</span></p>
+              <ol class="mp-output-grid" data-output-pages aria-label="Pages in the merged PDF"></ol>
+              <div class="mp-append" data-append hidden>Drop here to add pages at the end</div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="mp-sidebar" aria-label="Source PDF documents">
+          <div class="mp-sidebar-heading"><h2>Your PDFs</h2><button class="mp-secondary" data-choose type="button">+ Add PDFs</button></div>
+          <div class="mp-document-tabs" data-documents role="tablist" aria-label="Choose a source PDF" aria-orientation="vertical"></div>
+          <p class="mp-help">Removing a PDF also removes its pages from the resulting document.</p>
+          <button class="mp-text" data-reset type="button">Start over</button>
+        </aside>
+
+        <div class="mp-export">
+          <label>File name <span class="mp-filename"><input data-filename type="text" value="merged-document" maxlength="80" autocomplete="off" /><span>.pdf</span></span></label>
+          <p data-export-summary>Add pages to create your PDF.</p>
+          <button class="mp-primary" data-merge type="button" disabled>Create merged PDF <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+
+      <p class="mp-status" data-status role="status" aria-live="polite"></p>
+      <p class="mp-error" data-error role="alert" hidden></p>
+      <div class="mp-result" data-result hidden>
+        <div><h2>Your merged PDF is ready</h2><p data-result-details></p></div>
+        <a class="mp-primary" data-download download>Download PDF <span aria-hidden="true">↓</span></a>
+      </div>
+      <dialog class="mp-page-dialog" data-page-dialog aria-label="Page preview" aria-describedby="mp-page-help">
+        <p class="sr-only" id="mp-page-help">Scroll to zoom, then drag the page to pan. Click outside the page or press Escape to close. You can also use plus and minus to zoom, and zero to fit the page.</p>
+        <button class="sr-only" data-page-close type="button" autofocus>Close page preview</button>
+        <p class="mp-dialog-status" data-page-loading role="status" aria-live="polite"></p>
+        <div class="mp-expanded-stage" data-page-stage></div>
+      </dialog>
+      <noscript><p>Enable JavaScript to arrange and merge PDFs locally in your browser.</p></noscript>
+    </div>
+
+    <div class="mp-guide">
+      <article><span>01</span><h2>Choose a document</h2><p>Add your PDFs and switch between them using the document tabs on the right.</p></article>
+      <article><span>02</span><h2>Build your page order</h2><p>Drag selected pages into your merged PDF. Rearrange them, remove a page, or add an entire document.</p></article>
+      <article><span>03</span><h2>Download your PDF</h2><p>Check the numbered output pages, give your file a name, and save the combined document.</p></article>
+    </div>
+    <UsefulDetails>
+      <details><summary>Are my PDFs uploaded anywhere?</summary><p>No. Your PDFs are read, previewed, and merged on your device. This tool does not upload your files to a server.</p></details>
+      <details><summary>Can I add the same page more than once?</summary><p>Yes. Adding pages copies them into the result; it does not remove them from the source. Every copy can be moved or removed independently. The result can contain up to 500 pages.</p></details>
+      <details><summary>Can I arrange pages without dragging?</summary><p>Yes. Select source pages with their checkboxes and use “Add selected,” or add the whole document with “Add all pages.” Each output page has move earlier, move later, and remove buttons. These also work on touchscreens.</p></details>
+      <details><summary>Can I read a page before adding it?</summary><p>Use the expand button on any page in either pane to open a larger preview. Scroll up to zoom in and down to zoom out, then drag the page to see areas outside the view. Click outside the page or press Escape to close. Keyboard users can zoom with + and − and fit the page with 0. Your page selection and output order stay unchanged.</p></details>
+      <details><summary>Can I merge password-protected PDFs or images?</summary><p>Open and save an unlocked copy of a password-protected PDF before adding it here. For images, create a PDF first using <a href="/image-to-pdf/">Image to PDF</a>, then add that PDF to this workspace.</p></details>
+      <details><summary>What is preserved in the merged file?</summary><p>The tool copies your selected PDF pages, including their dimensions, rotation, and visible content. Document-level features such as bookmarks, digital signatures, attachments, and interactive form behavior are not preserved. Save completed forms as a flat PDF before merging.</p></details>
+    </UsefulDetails>
+  </div>
+</section>
+
+<script src="../scripts/merge-pdf.js"></script>

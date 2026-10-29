@@ -7,24 +7,35 @@ const tools = [
     description:
       "Resize, compress, and convert images in one browser-based workspace.",
     href: "/image-tools/",
+    icon: "M4 4h16v16H4z M8 16l4-5 4 5 2-2 2 2 M8 8h.01",
   },
   {
     title: "Countdown Timer",
     description:
       "A clean fullscreen countdown timer for exams, classrooms, presentations, and events.",
     href: "/countdown-timer/",
+    icon: "M9 3h6 M12 7a7 7 0 1 0 0 14 7 7 0 0 0 0-14 M12 10v4l2 2 M17 6l2-2",
   },
   {
     title: "Image to PDF",
     description:
       "Turn one or more images into a downloadable PDF.",
-    href: "#",
+    href: "/image-to-pdf/",
+    icon: "M14 3H6v18h12V7l-4-4z M14 3v5h4 M9 12h6 M9 16h6",
   },
   {
     title: "Merge PDF",
     description:
-      "Combine multiple PDF files into one document.",
-    href: "#",
+      "Choose, arrange, and combine PDF pages into one document.",
+    href: "/merge-pdf/",
+    icon: "M4 3h6v7H4z M14 3h6v7h-6z M7 10v4h10v-4 M12 14v7 M9 18l3 3 3-3",
+  },
+  {
+    title: "Photo & Video Viewer",
+    description:
+      "Browse a folder of photos and videos privately, with fullscreen viewing and slideshows.",
+    href: "/media-viewer/",
+    icon: "M3 5h18v14H3z M8 10h.01 M4 17l5-5 4 4 M15 9l4 3-4 3z",
   },
   {
     title: "Split PDF",
@@ -71,8 +82,9 @@ const tools = [
       </p>
 
       <a href="#tools" class="primary-button">
-        Browse tools
+        Browse tools <span aria-hidden="true">→</span>
       </a>
+      <p class="hero-note">Free to use · No sign-up · Files stay on your device</p>
     </div>
   </section>
 
@@ -88,22 +100,34 @@ const tools = [
 
       <div class="tool-grid">
         {
-          tools.map((tool) => (
-            <a
-              class={`tool-card ${tool.href === "#" ? "coming-soon" : ""}`}
-              href={tool.href}
-            >
+          tools.filter((tool) => tool.href !== "#").map((tool) => (
+            <a class="tool-card" href={tool.href}>
+              <span class="tool-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d={tool.icon} /></svg>
+              </span>
               <h3>{tool.title}</h3>
 
               <p>{tool.description}</p>
 
               <span class="tool-link">
-                {tool.href === "#" ? "Coming soon" : "Open tool →"}
+                Open tool <span aria-hidden="true">→</span>
               </span>
             </a>
           ))
         }
       </div>
+
+      <section class="upcoming-tools" aria-label="Tools coming next">
+        <h2>Coming next</h2>
+        <div class="upcoming-grid">
+          {tools.filter((tool) => tool.href === "#").map((tool) => (
+            <article class="upcoming-tool">
+              <h3>{tool.title}</h3>
+              <p>{tool.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   </section>
 </BaseLayout>

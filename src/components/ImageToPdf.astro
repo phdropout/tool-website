@@ -1,0 +1,84 @@
+---
+import "../styles/image-to-pdf.css";
+import UsefulDetails from "./UsefulDetails.astro";
+---
+
+<section class="itp-page">
+  <div class="container">
+    <header class="itp-intro">
+      <p class="eyebrow">Simple files. Ready to share.</p>
+      <h1>Image to PDF</h1>
+      <p>One photo or a whole collection. Turn your images into a PDF in a few simple steps.</p>
+      <span class="itp-privacy">✓ Files stay on your device · Free, no sign-up</span>
+    </header>
+
+    <div class="itp-tool" data-image-to-pdf>
+      <input data-file-input type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" multiple hidden />
+      <div class="itp-upload" data-drop-zone>
+        <div class="itp-upload-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="9" width="34" height="30" rx="5"/><circle cx="17" cy="19" r="3"/><path d="m8 33 10-9 8 7 6-6 9 8"/></svg>
+        </div>
+        <h2>Your images, together in one PDF</h2>
+        <p>Drag and drop images here, or choose them from your device.</p>
+        <button class="itp-primary" type="button" data-choose>Choose images <span aria-hidden="true">↑</span></button>
+        <p class="itp-formats">JPG, PNG &amp; WebP · Up to 50 images, 20 MB each, 100 MB total</p>
+      </div>
+
+      <div class="itp-workspace" data-workspace hidden>
+        <section class="itp-images" aria-label="PDF page order">
+          <div class="itp-toolbar">
+            <div><h2>Your pages <span data-page-count>0</span></h2><p>Drag to reorder, or use the arrow buttons.</p></div>
+            <div class="itp-toolbar-actions">
+              <button class="itp-secondary" type="button" data-choose>+ Add images</button>
+              <button class="itp-text-button" type="button" data-clear>Clear all</button>
+            </div>
+          </div>
+          <ol class="itp-grid" data-image-list></ol>
+          <p class="itp-hint">Each preview shows one PDF page with your selected layout.</p>
+        </section>
+
+        <aside class="itp-settings" aria-label="PDF settings">
+          <h2>Make it yours</h2>
+          <p class="itp-settings-intro">A few details before you download.</p>
+          <label>Page size
+            <select data-size><option value="a4">A4</option><option value="letter">US Letter</option><option value="image">Fit to image</option></select>
+          </label>
+          <label>Orientation
+            <select data-orientation><option value="auto">Auto — match each image</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select>
+          </label>
+          <p class="itp-setting-note" data-orientation-note hidden>Image-sized pages follow each image’s shape.</p>
+          <label>Margins
+            <select data-margin><option value="0">None</option><option value="18" selected>Small · ¼ inch</option><option value="36">Large · ½ inch</option></select>
+          </label>
+          <label>File name
+            <div class="itp-filename"><input data-filename type="text" value="my-images" maxlength="80" autocomplete="off" aria-label="PDF file name" /><span>.pdf</span></div>
+          </label>
+          <p class="itp-setting-note">Images are centered and keep their proportions. Transparent areas appear white.</p>
+          <button class="itp-primary itp-convert" type="button" data-convert>Create PDF <span aria-hidden="true">→</span></button>
+          <p class="itp-local-note">Processed here, in your browser.</p>
+        </aside>
+      </div>
+
+      <p class="itp-status" data-status role="status" aria-live="polite"></p>
+      <p class="itp-error" data-error role="alert" hidden></p>
+      <div class="itp-result" data-result hidden>
+        <div><h2>Your PDF is ready</h2><p data-result-details></p></div>
+        <a class="itp-primary" data-download download>Download PDF <span aria-hidden="true">↓</span></a>
+      </div>
+      <noscript><p>Enable JavaScript to convert images on your device.</p></noscript>
+    </div>
+
+    <section class="itp-guide" aria-label="How to convert images to PDF">
+      <article><span>01</span><h2>Choose your images</h2><p>Add photos, scans, or screenshots. Select several at once, or add more along the way.</p></article>
+      <article><span>02</span><h2>Get the layout right</h2><p>Arrange the page order, rotate an image, and choose your paper size and margins.</p></article>
+      <article><span>03</span><h2>Save and share</h2><p>Download a single PDF, ready to print, send, or keep. Your images never leave your device.</p></article>
+    </section>
+    <UsefulDetails>
+      <details><summary>Can I combine different image formats?</summary><p>Yes. Add JPG, PNG, and WebP images in any combination. Each image becomes one page. Convert HEIC or HEIF photos to JPG or PNG using <a href="/image-tools/">Image Tools</a> first.</p></details>
+      <details><summary>Will my images be cropped?</summary><p>No. Images fit inside your selected margins and keep their proportions. A4 and Letter pages may have white space. Choose “Fit to image” for a page that follows the image dimensions.</p></details>
+      <details><summary>What happens to image quality?</summary><p>Images keep their pixel dimensions. JPG and WebP images are re-encoded as high-quality JPEGs to apply their orientation consistently; PNG images retain transparency. Very large images above 24 megapixels are rejected to keep browser memory use manageable.</p></details>
+    </UsefulDetails>
+  </div>
+</section>
+
+<script src="../scripts/image-to-pdf.js"></script>

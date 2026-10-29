@@ -22,7 +22,7 @@
 .mp-primary:hover:not(:disabled) { background: var(--site-button-hover); }
 .mp-secondary { border: 1px solid var(--site-border-strong); background: var(--site-surface); color: var(--mp-accent); }
 .mp-secondary:hover:not(:disabled) { background: var(--site-tint); }
-.mp-text { padding: 6px 0; border: 0; background: transparent; color: var(--mp-muted); font-size: 0.85rem !important; text-decoration: underline; text-underline-offset: 3px; }
+.mp-text { padding: 6px 0; border: 0; background: transparent; color: var(--mp-muted); font-size: 0.85rem !important; text-decoration: none; font-weight: 600; }
 .mp-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 245px; gap: 24px; }
 .mp-editor { min-width: 0; }
 .mp-source { padding-bottom: 24px; border-bottom: 1px solid var(--mp-border); }
@@ -129,3 +129,5 @@
   .mp-result { padding: 18px; }
   .mp-result .mp-primary { width: 100%; }
 }
+
+.mp-text:hover { color: var(--site-accent); }

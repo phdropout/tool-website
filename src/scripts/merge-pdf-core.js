@@ -20,7 +20,7 @@ export async function mergePdfPages(documents, pages, onProgress = () => {}) {
   const sources = new Map(documents.map((document) => [document.id, document]));
   const loaded = new Map();
   const output = await PDFDocument.create();
-  output.setCreator("Tool Website — Merge PDF");
+  output.setCreator("Tools — Merge PDF");
   for (let index = 0; index < pages.length; index++) {
     const entry = pages[index];
     const source = sources.get(entry.documentId);

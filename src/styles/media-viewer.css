@@ -21,7 +21,7 @@
 .mv-primary:hover { background: var(--site-button-hover); }
 .mv-secondary { border: 1px solid var(--site-border-strong); background: var(--site-surface); color: var(--site-ink); }
 .mv-secondary:hover:not(:disabled) { border-color: var(--site-accent); }
-.mv-text { border: 0; padding: 8px; background: transparent; color: var(--site-muted); text-decoration: underline; text-underline-offset: 3px; }
+.mv-text { border: 0; padding: 8px; background: transparent; color: var(--site-muted); text-decoration: none; font-weight: 600; }
 .mv-library-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
 .mv-library-heading h2 { margin: 0 0 6px; font-size: 1.25rem; overflow-wrap: anywhere; }
 .mv-library-heading p { margin: 0; font-size: 0.82rem; color: var(--site-muted); }
@@ -100,3 +100,5 @@
   .mv-nav-previous { left: 4px; }
   .mv-nav-next { right: 4px; }
 }
+
+.mv-text:hover { color: var(--site-accent); }

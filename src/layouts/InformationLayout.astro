@@ -1,0 +1,38 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow?: string;
+}
+const { title, description, eyebrow = "Tools" } = Astro.props;
+---
+
+<BaseLayout title={`${title} | Tools`} description={description}>
+  <article class="information-page container">
+    <header>
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="information-intro">{description}</p>
+    </header>
+    <div class="information-content"><slot /></div>
+    <a class="information-back" href="/#tools">Browse the tools <span aria-hidden="true">→</span></a>
+  </article>
+</BaseLayout>
+
+<style>
+  .information-page { max-width: 760px; padding-block: clamp(48px, 8vw, 88px); }
+  h1 { margin: 0 0 20px; font-size: clamp(2.2rem, 6vw, 3.4rem); letter-spacing: -0.04em; line-height: 1.15; }
+  .information-intro { color: var(--site-muted); font-size: 1.15rem; line-height: 1.75; margin: 0; }
+  .information-content { margin-top: 44px; }
+  .information-content :global(section + section) { margin-top: 36px; }
+  .information-content :global(h2) { font-size: 1.3rem; letter-spacing: -0.02em; margin: 0 0 12px; }
+  .information-content :global(p), .information-content :global(li) { color: var(--site-muted); line-height: 1.8; }
+  .information-content :global(p) { margin: 0 0 16px; }
+  .information-content :global(ul) { padding-left: 22px; }
+  .information-content :global(li + li) { margin-top: 8px; }
+  .information-content :global(a), .information-back { color: var(--site-accent); font-weight: 600; }
+  .information-content :global(a:hover), .information-back:hover { color: var(--site-ink); }
+  .information-back { display: inline-block; margin-top: 32px; font-weight: 600; }
+</style>

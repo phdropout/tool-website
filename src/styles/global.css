@@ -77,6 +77,7 @@ body {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 .container {
@@ -88,6 +89,7 @@ a {
 
 .site-header {
   background: var(--site-background);
+  border-bottom: 1px solid var(--site-border);
 }
 
 .header-inner {
@@ -264,8 +266,8 @@ a {
 /* Footer */
 
 .site-footer {
-  padding: 40px 0;
-  text-align: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--site-border);
   color: var(--site-muted);
 }
 
@@ -274,7 +276,7 @@ a {
 }
 
 .footer-note {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .hero-note {
@@ -292,37 +294,6 @@ a {
   border-radius: 12px;
   background: var(--site-surface-soft);
   color: var(--site-accent);
-}
-
-.upcoming-tools {
-  margin-top: 56px;
-}
-
-.upcoming-tools h2 {
-  margin: 0 0 20px;
-  font-size: 1.2rem;
-}
-
-.upcoming-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 40px;
-}
-
-.upcoming-tool {
-  padding: 20px 0;
-  border-top: 1px solid var(--site-border);
-}
-
-.upcoming-tool h3 {
-  margin: 0 0 6px;
-  font-size: 0.95rem;
-}
-
-.upcoming-tool p {
-  margin: 0;
-  color: var(--site-muted);
-  font-size: 0.85rem;
 }
 
 /* Shared FAQ pattern for every tool. */
@@ -414,10 +385,6 @@ a {
   }
 
   .tool-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .upcoming-grid {
     grid-template-columns: 1fr;
   }
 

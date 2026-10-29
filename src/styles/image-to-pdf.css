@@ -28,7 +28,7 @@
 .itp-primary:hover { background: var(--site-button-hover); }
 .itp-secondary { min-height: 42px; padding: 9px 14px; border: 1px solid var(--site-border-strong); border-radius: 8px; background: var(--site-surface); color: var(--itp-accent); font-weight: 600; }
 .itp-secondary:hover { background: var(--site-tint); }
-.itp-text-button { padding: 8px; border: 0; background: transparent; color: var(--itp-muted); text-decoration: underline; text-underline-offset: 3px; }
+.itp-text-button { padding: 8px; border: 0; background: transparent; color: var(--itp-muted); text-decoration: none; font-weight: 600; }
 .itp-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; }
 .itp-toolbar { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
 .itp-toolbar h2 { margin: 0; font-size: 1.2rem; }
@@ -91,3 +91,5 @@
   .itp-result { padding: 18px; }
   .itp-result .itp-primary { width: 100%; }
 }
+
+.itp-text-button:hover { color: var(--site-accent); }

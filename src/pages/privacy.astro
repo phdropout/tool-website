@@ -1,0 +1,40 @@
+---
+import InformationLayout from "../layouts/InformationLayout.astro";
+---
+
+<InformationLayout title="Privacy Policy" description="How Tools handles your files, browser preferences, and visits." eyebrow="Your privacy">
+  <p>Last updated: <time datetime="2026-10-28">October 28, 2026</time></p>
+  <section>
+    <h2>Files you choose</h2>
+    <p>The current image, PDF, and media tools process files locally in your browser. We do not upload their contents to our servers. This includes images, PDFs, videos, and embedded metadata read by the tools.</p>
+    <p>When you choose a folder, the media viewer uses the selected files and their relative folder paths to build the gallery. It does not scan other folders on your device. File names, previews, and metadata are used to display and process your selection, rather than sent to us.</p>
+  </section>
+  <section>
+    <h2>Temporary processing and downloads</h2>
+    <p>Selected files and generated previews are held by the page while you work. The tools do not save a file library to browser storage. Closing the page ends the tool session; files you download remain on your device until you delete them.</p>
+    <p>Your browser or device may maintain its own cache, download history, or other records under its settings.</p>
+  </section>
+  <section>
+    <h2>Browser preferences</h2>
+    <p>We use local storage under the key <code>tool-website-theme</code> to remember your choice of light or dark mode. If you have not chosen a theme, the site follows your device preference.</p>
+    <p>You can remove the saved preference by clearing this site's browser storage. The current application does not set advertising or analytics cookies.</p>
+  </section>
+  <section>
+    <h2>Website requests and hosting</h2>
+    <p>Visiting a page sends ordinary network requests to the service hosting the website. These requests can include your IP address, browser information, requested URL, referrer information, and time of access. Hosting or network providers may process this information to deliver the site, protect it, and maintain service logs.</p>
+    <p>GitHub Pages is the planned hosting provider. When this site is served through GitHub Pages, GitHub logs and stores visitors' IP addresses for security purposes, whether or not they are signed in to GitHub. See <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub's hosting information</a> and <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's Privacy Statement</a> for its data practices.</p>
+    <p>Local file processing does not prevent these ordinary website requests. Selected file contents are not included in them by our tools.</p>
+  </section>
+  <section>
+    <h2>Advertising and analytics</h2>
+    <p>Google AdSense and third-party analytics are not currently integrated into this website. If advertising or analytics are introduced, this policy will be updated to describe the providers, data use, and available choices, and applicable consent controls will be added before those services are enabled.</p>
+  </section>
+  <section>
+    <h2>Links to other websites</h2>
+    <p>If you follow a link to another website, that website's privacy practices apply. We do not control how those services handle your information.</p>
+  </section>
+  <section>
+    <h2>Changes to this policy</h2>
+    <p>This policy describes the current tools. We will update this page and its date when the way the website handles information changes.</p>
+  </section>
+</InformationLayout>

@@ -31,7 +31,7 @@ export function getPageLayout(width, height, rotation, { size = "a4", orientatio
 export async function createImagePdf(images, settings, onProgress = () => {}) {
   if (!images.length) throw new Error("Choose at least one image first.");
   const pdf = await PDFDocument.create();
-  pdf.setCreator("Tool Website — Image to PDF");
+  pdf.setCreator("Tools — Image to PDF");
   for (let index = 0; index < images.length; index++) {
     const image = images[index];
     const embedded = image.type === "image/png" ? await pdf.embedPng(image.bytes) : await pdf.embedJpg(image.bytes);

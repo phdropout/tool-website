@@ -1,11 +1,23 @@
 <footer class="site-footer">
-    <div class="container">
-    <p>
-        © {new Date().getFullYear()} Tool Website
-    </p>
-
-    <p class="footer-note">
-        Simple tools. Fast processing. No unnecessary uploads.
-    </p>
+    <div class="container footer-bar">
+        <p class="footer-credit">© {new Date().getFullYear()} Tools <span class="footer-tagline">- Simple tools for everyday tasks.</span></p>
+        <nav class="footer-links" aria-label="About this website">
+            <a href="/about/">About</a>
+            <a href="/privacy/">Privacy Policy</a>
+        </nav>
     </div>
 </footer>
+
+<style>
+    .footer-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .site-footer .footer-credit { margin: 0; font-size: 0.8rem; line-height: 1.7; }
+    .footer-links { display: flex; flex-shrink: 0; margin-left: auto; justify-content: flex-end; gap: 24px; font-size: 0.8rem; white-space: nowrap; }
+    .footer-links a { text-decoration: none; transition: color 0.15s ease; }
+    .footer-links a:hover { color: var(--site-accent); }
+    @media (max-width: 800px) {
+        .footer-tagline { display: none; }
+    }
+    @media (max-width: 560px) {
+        .footer-links { gap: 16px; }
+    }
+</style>

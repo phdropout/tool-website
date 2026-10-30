@@ -18,7 +18,7 @@ import { SITE_NAME } from "../site.js";
   <section>
     <h2>Browser preferences</h2>
     <p>We use local storage under the key <code>tool-website-theme</code> to remember your choice of light or dark mode. If you have not chosen a theme, the site follows your device preference.</p>
-    <p>You can remove the saved preference by clearing this site's browser storage. The current application does not set advertising or analytics cookies.</p>
+    <p>We also store your analytics choice in local storage under <code>papers-and-pixels-analytics-v1</code> for up to 180 days. You can remove saved preferences by clearing this site's browser storage.</p>
   </section>
   <section>
     <h2>Website requests and hosting</h2>
@@ -28,7 +28,12 @@ import { SITE_NAME } from "../site.js";
   </section>
   <section>
     <h2>Advertising and analytics</h2>
-    <p>Google AdSense and third-party analytics are not currently integrated into this website. If advertising or analytics are introduced, this policy will be updated to describe the providers, data use, and available choices, and applicable consent controls will be added before those services are enabled.</p>
+    <p>With your permission, we use Google Analytics to understand visits to Papers &amp; Pixels and which pages people use. The Google tag loads only after you accept analytics on our public website. If you decline, it is not loaded.</p>
+    <p>Google Analytics uses cookies, including cookies beginning with <code>_ga</code>, to distinguish browsers and measure visits. Analytics can include page visits, referring websites, browser and device information, and approximate location. Google processes network information such as your IP address to provide the service. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> and <a href="https://policies.google.com/technologies/partner-sites">how Google uses information from partner sites</a>.</p>
+    <p>Our analytics setup does not include your selected files, artwork, embedded metadata, or tool input values as custom event data. Public page and referrer URLs are sent without query strings or fragments. Advertising personalization and Google signals are disabled in our tag configuration.</p>
+    <p>You can change your choice below. Declining after accepting disables further analytics measurement from our integration and removes accessible Google Analytics cookies on this site. It does not remove information already processed by Google.</p>
+    <button class="analytics-settings-button" data-analytics-settings type="button" hidden>Change analytics preferences</button>
+    <p>Google AdSense is not currently integrated. If advertising is introduced, we will update this policy and provide the applicable choices before enabling it.</p>
   </section>
   <section>
     <h2>Links to other websites</h2>
@@ -39,3 +44,9 @@ import { SITE_NAME } from "../site.js";
     <p>This policy describes the current tools. We will update this page and its date when the way the website handles information changes.</p>
   </section>
 </InformationLayout>
+
+<style>
+  .analytics-settings-button[hidden] { display: none; }
+  .analytics-settings-button { margin: 0 0 20px; padding: 10px 16px; min-height: 44px; border: 1px solid var(--site-border-strong); border-radius: 8px; background: var(--site-surface); color: var(--site-accent); font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+  .analytics-settings-button:hover { background: var(--site-tint); }
+</style>

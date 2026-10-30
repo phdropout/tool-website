@@ -3,6 +3,7 @@ import { sitePath } from "../scripts/site-path.js";
 import { SITE_NAME } from "../site.js";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import AnalyticsConsent from "../components/AnalyticsConsent.astro";
 import "../styles/global.css";
 import themeScript from "../scripts/theme.js?raw";
 import bodyFont from "../assets/fonts/dm-sans-latin.woff2?url";
@@ -49,5 +50,6 @@ const {
         </main>
 
         <Footer />
+        <AnalyticsConsent />
     </body>
 </html>

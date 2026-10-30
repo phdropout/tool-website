@@ -59,3 +59,19 @@ Deployment references:
 The activity page is at `/coloring-studio/`. Add starter PNG files to `public/coloring-pages/`; the gallery picks them up on the next build. Filenames become display titles, with hyphens and underscores replaced by spaces. SVG starters are not included. Personal uploads stay in the browser and are not added to the public gallery.
 
 The first version includes round, pencil, and soft brushes, palettes and custom colors, an eraser, pen pressure, a hand tool, fullscreen, and PNG export. Coloring is kept separate from the original page. Up to 100 actions can be undone; older marks remain in the artwork. Sessions are not saved after leaving or refreshing the page.
+
+## Google Analytics
+
+GA4 measurement ID: `G-S2L3Q2591F`, defined in `src/site.js`.
+
+The shared layout includes an analytics preference prompt in production builds. It runs only on `papersandpixels.net` and `www.papersandpixels.net`; localhost, previews on other domains, and development builds do not send traffic. The Google tag is not loaded until a visitor accepts analytics. Accept/Decline choices are stored for up to 180 days, and visitors can change their choice on the Privacy page. Changing the hosting domain requires updating the host list in `src/scripts/analytics.js`.
+
+Before publishing this integration:
+
+1. In Google Analytics, open **Admin → Data streams → your web stream** and turn **Enhanced measurement OFF**. The integration sends a standard pageview per full page load; it does not intentionally instrument tool fields, local files, downloads, or artwork. Enhanced measurement can automatically collect additional interactions, including form and download metadata, so leave it off unless those events have been reviewed separately.
+2. Publish the changes, visit the live website, and accept analytics to test it. Look in **Reports → Realtime** for your visit. A declined choice or an ad blocker can prevent your test visit from appearing. The setup wizard may not detect the tag before consent.
+3. Keep Google signals, advertising personalization, user-provided data collection, and cross-product advertising connections disabled unless separately reviewed and disclosed. Configure the property's data retention and account data-sharing options in Google Analytics for your needs.
+
+The tag configuration removes query strings and fragments from page/referrer URLs and disables Google signals and advertising personalization. Campaign parameters in page URLs are intentionally excluded. Analytics reports count consenting, unblocked visitors and will not represent every visit.
+
+`tests/analytics.test.mjs` uses a mocked Google tag and DOM. Tests do not contact Google or send real traffic events.

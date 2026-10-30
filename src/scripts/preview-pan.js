@@ -1,4 +1,4 @@
-export function attachPreviewPan(stage, { contentTag = "CANVAS", classPrefix = "mp" } = {}) {
+export function attachPreviewPan(stage, { contentTag = "CANVAS", classPrefix = "mp", enabled = () => true } = {}) {
   let pan = null;
   let suppressClick = false;
   const canPan = () => stage.scrollWidth > stage.clientWidth + 1 || stage.scrollHeight > stage.clientHeight + 1;
@@ -15,7 +15,7 @@ export function attachPreviewPan(stage, { contentTag = "CANVAS", classPrefix = "
   }
   stage.addEventListener("pointerdown", (event) => {
     suppressClick = false;
-    if (event.button !== 0 || !event.isPrimary || event.target.tagName !== contentTag || !canPan()) return;
+    if (!enabled() || event.button !== 0 || !event.isPrimary || event.target.tagName !== contentTag || !canPan()) return;
     pan = {
       pointerId: event.pointerId, x: event.clientX, y: event.clientY,
       left: stage.scrollLeft, top: stage.scrollTop,

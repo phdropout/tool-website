@@ -97,3 +97,14 @@ test("media viewer images can pan without changing PDF canvas behavior", () => {
   view.fire("pointerup");
   assert.equal(view.classes.has("mv-panning"), false);
 });
+
+test('an explicit mode guard keeps the Hand tool from taking capture while painting', () => {
+  let enabled = false;
+  const view = setup(true, { enabled: () => enabled });
+  view.fire('pointerdown');
+  assert.equal(view.captured.size, 0);
+  enabled = true;
+  view.fire('pointerdown');
+  assert.equal(view.captured.size, 1);
+  view.fire('pointerup');
+});

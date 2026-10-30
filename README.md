@@ -53,3 +53,9 @@ GitHub Pages limits commercial hosting; check its suitability before using this 
 Deployment references:
 - https://docs.astro.build/en/guides/deploy/github/
 - https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
+
+## Coloring Studio
+
+The activity page is at `/coloring-studio/`. Add starter PNG files to `public/coloring-pages/`; the gallery picks them up on the next build. Filenames become display titles, with hyphens and underscores replaced by spaces. SVG starters are not included. Personal uploads stay in the browser and are not added to the public gallery.
+
+The first version includes round, pencil, and soft brushes, palettes and custom colors, an eraser, pen pressure, a hand tool, fullscreen, and PNG export. Coloring is kept separate from the original page. Up to 100 actions can be undone; older marks remain in the artwork. Sessions are not saved after leaving or refreshing the page.

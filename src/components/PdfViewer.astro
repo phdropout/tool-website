@@ -1,0 +1,79 @@
+---
+import "../styles/pdf-viewer.css";
+import UsefulDetails from "./UsefulDetails.astro";
+---
+<section class="pv-page">
+  <div class="container">
+    <header class="pv-intro">
+      <p class="eyebrow">Read. Mark. Remember.</p>
+      <h1>PDF Viewer</h1>
+      <p>Highlight a sentence or paint over a scanned page. Keep the details that matter.</p>
+      <span>Files stay on your device · Free, no sign-up</span>
+    </header>
+    <div class="pv-tool" data-pdf-viewer>
+      <input data-file type="file" accept="application/pdf,.pdf" hidden />
+      <div class="pv-upload" data-upload>
+        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M28 5H12v38h26V15L28 5Z M28 5v11h10 M18 25h14 M18 32h10" /></svg>
+        <h2>A closer look at your PDF</h2>
+        <p>Drop one PDF here, or choose a file to get started.</p>
+        <button class="pv-primary" data-choose type="button">Choose PDF</button>
+      </div>
+      <p class="pv-error" data-error role="alert" hidden></p>
+      <p class="pv-status" data-status role="status" aria-live="polite"></p>
+      <div data-workspace hidden>
+        <div class="pv-document-row">
+          <p class="pv-filename" data-name></p>
+          <button class="pv-secondary" data-replace type="button">Open another PDF</button>
+          <button class="pv-secondary" data-fullscreen type="button" aria-pressed="false">Fullscreen</button>
+          <button class="pv-primary" data-download type="button">Download PDF</button>
+        </div>
+        <div class="pv-toolbar" role="group" aria-label="Reading and highlighting controls">
+          <div class="pv-modes" role="group" aria-label="Tool">
+            <button data-mode="read" type="button" aria-pressed="false">Read</button>
+            <button data-mode="text" type="button" aria-pressed="true">Text highlight</button>
+            <button data-mode="brush" type="button" aria-pressed="false">Highlight brush</button>
+          </div>
+          <label>Color <select data-color><option value="yellow">Yellow</option><option value="green">Green</option><option value="pink">Pink</option><option value="blue">Blue</option></select></label>
+          <label>Brush size <select data-size><option value="8">Fine</option><option value="16" selected>Medium</option><option value="28">Broad</option></select></label>
+          <button class="pv-secondary" data-apply type="button" disabled>Highlight selection</button>
+          <button class="pv-secondary" data-undo type="button" disabled>Undo</button>
+          <button class="pv-secondary" data-redo type="button" disabled>Redo</button>
+          <button class="pv-secondary" data-clear type="button" disabled>Clear page highlights</button>
+        </div>
+        <div class="pv-navigation" role="group" aria-label="Page and zoom controls">
+          <button class="pv-secondary" data-prev type="button" aria-label="Previous page">←</button>
+          <label>Page <input data-page type="number" min="1" value="1" aria-label="Page number" /></label>
+          <span data-total></span>
+          <button class="pv-secondary" data-next type="button" aria-label="Next page">→</button>
+          <div class="pv-zoom">
+            <button class="pv-secondary" data-zoom-out type="button" aria-label="Zoom out">−</button>
+            <label class="pv-zoom-value"><input data-zoom type="number" min="10" max="300" step="1" value="100" aria-label="Zoom percentage" title="Enter a zoom percentage from 10 to 300" /><span aria-hidden="true">%</span></label>
+            <button class="pv-secondary" data-zoom-in type="button" aria-label="Zoom in">+</button>
+            <button class="pv-secondary" data-fit type="button">Fit width</button>
+          </div>
+        </div>
+        <p class="pv-hint" data-hint>Select text to highlight it. Use the brush for scans or images.</p>
+        <div class="pv-reader">
+          <nav class="pv-thumbnails" data-thumbnails aria-label="PDF page thumbnails"></nav>
+          <div class="pv-stage" data-stage tabindex="0" aria-label="PDF page. Scroll to see the page when zoomed.">
+            <div class="pv-sheet" data-sheet data-tool="text" hidden>
+              <canvas data-canvas aria-label="PDF page preview"></canvas>
+              <svg class="pv-marks" data-marks aria-hidden="true"></svg>
+              <div class="pv-text-layer" data-text></div>
+              <div class="pv-brush-surface" data-brush aria-label="Highlighter drawing area"></div>
+            </div>
+          </div>
+        </div>
+        <p class="pv-summary" data-summary>No highlights yet.</p>
+        <p class="pv-hint pv-download-note">Downloads include permanent highlights over the original pages. Your original file stays unchanged. Highlights are not redactions and do not hide or remove content.</p>
+      </div>
+    </div>
+    <UsefulDetails>
+      <details><summary>How do I highlight text?</summary><p>Choose Text highlight, then drag across a word or sentence. The selected text is highlighted when you release. You can also select text with your keyboard and choose Highlight selection. Use Undo to remove the last mark.</p></details>
+      <details><summary>What about scanned pages or text inside images?</summary><p>Choose Highlight brush and drag over the area you want to mark. Adjust the brush size and color in the toolbar. This tool does not recognize text with OCR, so scanned content requires the brush unless the PDF already has a text layer.</p></details>
+      <details><summary>Are highlights saved when I download?</summary><p>Yes. Download PDF creates a copy containing all your highlights across every page. The marks are permanent page graphics in that copy, rather than editable comments. Original text remains selectable where the source PDF supports it. Reopening a downloaded copy will not restore its marks to the Undo history.</p></details>
+      <details><summary>Are my files uploaded or saved?</summary><p>No. Viewing and highlighting happen in your browser. Download your work before closing or refreshing the page, or opening another file. Password-protected PDFs must be unlocked before opening them here. Interactive forms, links, and existing comment controls are not editable in this viewer.</p></details>
+    </UsefulDetails>
+  </div>
+</section>
+<script src="../scripts/pdf-viewer.js"></script>

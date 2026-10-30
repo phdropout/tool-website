@@ -1,3 +1,4 @@
+import { SITE_NAME } from "../site.js";
 import { PDFDocument } from "pdf-lib";
 
 export function makePageEntries(documentId, pageIndices, makeId = () => crypto.randomUUID()) {
@@ -20,7 +21,7 @@ export async function mergePdfPages(documents, pages, onProgress = () => {}) {
   const sources = new Map(documents.map((document) => [document.id, document]));
   const loaded = new Map();
   const output = await PDFDocument.create();
-  output.setCreator("Tools — Merge PDF");
+  output.setCreator(`${SITE_NAME} — Merge PDF`);
   for (let index = 0; index < pages.length; index++) {
     const entry = pages[index];
     const source = sources.get(entry.documentId);

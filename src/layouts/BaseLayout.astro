@@ -1,9 +1,12 @@
 ---
 import { sitePath } from "../scripts/site-path.js";
+import { SITE_NAME } from "../site.js";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import themeScript from "../scripts/theme.js?raw";
+import bodyFont from "../assets/fonts/dm-sans-latin.woff2?url";
+import headingFont from "../assets/fonts/manrope-latin.woff2?url";
 
 interface Props {
     title: string;
@@ -12,7 +15,7 @@ interface Props {
 
 const {
     title,
-    description = "Free browser-based tools for images, PDFs, data, and more.",
+    description = "Tools for working with documents, images, media, and everyday tasks.",
 } = Astro.props;
 ---
 
@@ -28,12 +31,14 @@ const {
         />
 
         <meta name="description" content={description} />
+        <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin="anonymous" />
+        <link rel="preload" href={headingFont} as="font" type="font/woff2" crossorigin="anonymous" />
 
         <link rel="icon" type="image/svg+xml" href={sitePath("/favicon.svg")} />
 
         <meta name="generator" content={Astro.generator} />
 
-        <title>{title}</title>
+        <title>{`${title} | ${SITE_NAME}`}</title>
     </head>
 
     <body>

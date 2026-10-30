@@ -1,3 +1,4 @@
+import { SITE_NAME } from "../site.js";
 import { PDFDocument, rgb, BlendMode, LineCapStyle } from "pdf-lib";
 
 export const highlightColors = { yellow: "#facc15", green: "#4ade80", pink: "#f472b6", blue: "#60a5fa" };
@@ -47,6 +48,6 @@ export async function exportHighlightedPdf(bytes, marks) {
       page.drawSvgPath(highlightPath(points, false, true), { borderColor: color, borderWidth: mark.width, borderOpacity: 0.35, borderLineCap: LineCapStyle.Round, blendMode: BlendMode.Multiply });
     } else throw new Error("Unknown highlight type.");
   }
-  pdf.setCreator("Tools — PDF Viewer");
+  pdf.setCreator(`${SITE_NAME} — PDF Viewer`);
   return pdf.save();
 }

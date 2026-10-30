@@ -1,12 +1,13 @@
 ---
 import { sitePath } from "../scripts/site-path.js";
+import { SITE_NAME } from "../site.js";
 import InformationLayout from "../layouts/InformationLayout.astro";
 ---
 
 <InformationLayout title="About" description="Useful everyday tools, with a little less friction.">
   <section>
     <h2>Small tasks should feel simple</h2>
-    <p>Tools brings practical utilities together in one place. Resize an image, prepare a PDF, set a countdown, or browse a folder of photos and videos without installing a separate app.</p>
+    <p>{SITE_NAME} brings practical utilities together in one place. Resize an image, prepare a PDF, set a countdown, or browse a folder of photos and videos without installing a separate app.</p>
     <p>The aim is a calm workspace: clear controls, readable previews, and room to focus on what you came to do.</p>
   </section>
   <section>

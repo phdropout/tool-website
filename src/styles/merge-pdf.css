@@ -10,7 +10,6 @@
 .mp-intro .eyebrow { color: var(--mp-accent); font-size: 0.75rem; }
 .mp-intro h1 { margin: 0 0 16px; font-size: clamp(2.5rem, 6vw, 3.6rem); line-height: 1.1; letter-spacing: -0.04em; }
 .mp-intro > p:not(.eyebrow) { margin: 0 0 18px; color: var(--mp-muted); font-size: 1.05rem; }
-.mp-intro > span { color: var(--mp-muted); font-size: 0.82rem; }
 .mp-tool { padding: 24px; border: 1px solid var(--mp-border); border-radius: 20px; background: var(--site-surface); box-shadow: 0 12px 40px -24px var(--site-shadow); }
 .mp-upload { padding: 52px 24px; border: 1px dashed var(--site-border-strong); border-radius: 14px; background: var(--site-surface-soft); text-align: center; }
 .mp-upload > svg { box-sizing: content-box; display: block; margin: 0 auto 24px; padding: 16px; border-radius: 24px; background: var(--site-surface-soft); color: var(--mp-accent); }
@@ -96,10 +95,6 @@
 .mp-dragging { opacity: 0.45; }
 .mp-insert-before { box-shadow: -5px 0 var(--mp-accent); border-color: var(--mp-accent); }
 .mp-drop-ready { background: var(--site-tint); border-color: var(--mp-accent); }
-.mp-guide { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; padding: 64px 8px; }
-.mp-guide article > span { color: var(--mp-accent); font-size: 0.8rem; font-weight: 700; }
-.mp-guide h2 { margin: 10px 0; font-size: 1.05rem; }
-.mp-guide p { margin: 0; color: var(--mp-muted); font-size: 0.9rem; line-height: 1.7; }
 @media (max-width: 850px) {
   .mp-workspace { grid-template-columns: minmax(0, 1fr) 210px; gap: 16px; }
   .mp-sidebar { padding: 14px; }
@@ -125,7 +120,6 @@
   .mp-export { align-items: stretch; flex-direction: column; gap: 14px; }
   .mp-filename { max-width: none; }
   .mp-export > p { margin: 0; }
-  .mp-guide { grid-template-columns: 1fr; gap: 28px; padding: 40px 8px; }
   .mp-result { padding: 18px; }
   .mp-result .mp-primary { width: 100%; }
 }

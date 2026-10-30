@@ -1,16 +1,16 @@
 ---
 import { sitePath } from "../scripts/site-path.js";
 import UsefulDetails from "./UsefulDetails.astro";
+import HowToUse from "./HowToUse.astro";
 import "../styles/media-viewer.css";
 ---
 
 <section class="mv-page">
   <div class="container mv-container">
     <header class="mv-intro">
-      <p class="eyebrow">Your memories. A little more room.</p>
+      <p class="eyebrow">Media library</p>
       <h1>Photo &amp; Video Viewer</h1>
-      <p>Choose a folder and settle into your photos and videos. A simple gallery, with everything kept on your device.</p>
-      <span>No uploads · No account · No changes to your files</span>
+      <p>Browse photos and videos by folder, then open them for a closer look.</p>
     </header>
 
     <div class="mv-tool" data-media-viewer>
@@ -18,7 +18,7 @@ import "../styles/media-viewer.css";
       <input data-file-input type="file" multiple accept="image/*,video/*,.heic,.heif,.mkv,.avi,.m4v" hidden />
       <div class="mv-welcome" data-welcome>
         <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 14V9h14l5 5h19v25H5V14Z"/><circle cx="17" cy="23" r="3"/><path d="m6 34 11-7 8 6 7-9 10 10"/></svg>
-        <h2>A folder full of moments</h2>
+        <h2>Open your media library</h2>
         <p>Browse photos and videos together. Subfolders are included; unrelated files are skipped.</p>
         <div class="mv-choices"><button class="mv-primary" type="button" data-choose-folder>Choose folder</button><button class="mv-secondary" type="button" data-choose-files>Choose files instead</button></div>
         <p class="mv-note">Your browser gives this page access only to the files you select. Nothing is sent to a server.</p>
@@ -70,11 +70,20 @@ import "../styles/media-viewer.css";
       </dialog>
     </div>
 
-    <div class="mv-guide">
-      <article><span>01</span><h2>Choose your collection</h2><p>Select a folder or individual files. Explore its subfolders or see everything together.</p></article>
-      <article><span>02</span><h2>Take a closer look</h2><p>Open a thumbnail, move between files with the arrow keys, or zoom and drag to inspect an image.</p></article>
-      <article><span>03</span><h2>Make yourself comfortable</h2><p>Play a video, enter fullscreen, or start a five-second photo slideshow. Your originals stay untouched.</p></article>
-    </div>
+    <HowToUse steps={[
+      {
+        title: "Choose a folder",
+        description: "Select a folder of photos and videos, or use Choose files to open individual items.",
+      },
+      {
+        title: "Find what you need",
+        description: "Search by name, filter by folder or media type, and choose a sort order.",
+      },
+      {
+        title: "Open and explore",
+        description: "Select a thumbnail to open it. Use the arrows to browse, zoom into photos, or enter fullscreen for a slideshow.",
+      },
+    ]} />
     <UsefulDetails>
       <details><summary>Are my photos or videos uploaded?</summary><p>No. The gallery reads only the files you choose, using local browser previews. Closing or refreshing this page clears the collection; no library or file contents are saved.</p></details>
       <details><summary>Which files can I view?</summary><p>The gallery recognizes JPG, PNG, WebP, GIF, AVIF, BMP, SVG, HEIC, and HEIF images, plus common video containers such as MP4, WebM, and MOV. Actual playback depends on your browser and the file’s encoding. Unsupported videos show a message instead of playing. HEIC and HEIF require native browser support; you can also convert them first using <a href={sitePath("/image-tools/")}>Image Tools</a>.</p></details>

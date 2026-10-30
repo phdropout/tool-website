@@ -1,9 +1,10 @@
 ---
 import { sitePath } from "../scripts/site-path.js";
+import { SITE_NAME } from "../site.js";
 ---
 <footer class="site-footer">
     <div class="container footer-bar">
-        <p class="footer-credit">© {new Date().getFullYear()} Tools <span class="footer-tagline">- Simple tools for everyday tasks.</span></p>
+        <p class="footer-credit">© {new Date().getFullYear()} {SITE_NAME} <span class="footer-tagline">- Simple tools for everyday tasks.</span></p>
         <nav class="footer-links" aria-label="About this website">
             <a href={sitePath("/about/")}>About</a>
             <a href={sitePath("/privacy/")}>Privacy Policy</a>

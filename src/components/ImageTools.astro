@@ -1,6 +1,7 @@
 ---
 import "../styles/image-tools.css";
 import UsefulDetails from "./UsefulDetails.astro";
+import HowToUse from "./HowToUse.astro";
 
 interface Props {
   activeTab?: "resize" | "compress" | "convert" | "metadata";
@@ -12,18 +13,13 @@ const { activeTab = "resize" } = Astro.props;
 <section class="tool-page image-tool-page">
   <div class="container">
     <div class="tool-intro">
-      <p class="eyebrow">Your everyday image workspace</p>
+      <p class="eyebrow">Image editing</p>
 
       <h1>Image Tools</h1>
 
       <p>
-        Resize, compress, convert, and explore image metadata.
-        Everything you need in one simple workspace.
+        Resize images, reduce file sizes, change formats, and inspect embedded metadata.
       </p>
-      <div class="image-privacy-note">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3 4 6v6c0 4 8 9 8 9s8-5 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg>
-        Files stay on your device <span aria-hidden="true">·</span> No sign-up needed
-      </div>
     </div>
 
     <div class="image-tools-card" data-image-tools data-active-tab={activeTab}>
@@ -431,24 +427,20 @@ const { activeTab = "resize" } = Astro.props;
 
 <section class="tool-info-section image-tool-info">
   <div class="container info-container">
-    <div class="info-block">
-      <p class="eyebrow">One workspace</p>
-      <h2>Resize, compress, or convert without uploading again</h2>
-
-      <p>
-        Choose an image once, then switch between the Resize, Compress, Convert, and Metadata tabs.
-        Each tab shows only the controls or information needed for that task.
-      </p>
-    </div>
-
-    <div class="privacy-block">
-      <h2>Processed in your browser</h2>
-
-      <p>
-        Image processing happens locally in your browser. Your selected image is not
-        uploaded to this website for processing.
-      </p>
-    </div>
+    <HowToUse steps={[
+      {
+        title: "Choose an image",
+        description: "Select a JPG, PNG, WebP, HEIC, or HEIF file, or drop it into the workspace.",
+      },
+      {
+        title: "Choose your task",
+        description: "Switch to Resize, Compress, or Convert. Adjust the settings and apply your changes.",
+      },
+      {
+        title: "Review and download",
+        description: "Check the result and download your image. Use Metadata to inspect file details and embedded information.",
+      },
+    ]} />
 
     <UsefulDetails>
       <details>
@@ -459,14 +451,6 @@ const { activeTab = "resize" } = Astro.props;
         </p>
       </details>
 
-      <details>
-        <summary>Why are Resize, Compress, and Convert separate tabs?</summary>
-        <p>
-          Each task has a different goal. Resize changes dimensions, Compress focuses
-          on file size, and Convert changes the image format. Keeping them in one
-          workspace avoids duplicate uploads while keeping the controls focused.
-        </p>
-      </details>
 
       <details>
         <summary>Can HEIC or HEIF files be compressed directly?</summary>
@@ -489,8 +473,7 @@ const { activeTab = "resize" } = Astro.props;
       <details>
         <summary>Is my image uploaded anywhere?</summary>
         <p>
-          No. The processing is performed locally in your browser using browser-side
-          image-processing libraries.
+          No. Your selected image is processed in your browser and is not sent to our servers.
         </p>
       </details>
     </UsefulDetails>

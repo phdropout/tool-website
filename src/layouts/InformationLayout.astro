@@ -1,5 +1,6 @@
 ---
 import { sitePath } from "../scripts/site-path.js";
+import { SITE_NAME } from "../site.js";
 import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
@@ -7,10 +8,10 @@ interface Props {
   description: string;
   eyebrow?: string;
 }
-const { title, description, eyebrow = "Tools" } = Astro.props;
+const { title, description, eyebrow = SITE_NAME } = Astro.props;
 ---
 
-<BaseLayout title={`${title} | Tools`} description={description}>
+<BaseLayout title={title} description={description}>
   <article class="information-page container">
     <header>
       <p class="eyebrow">{eyebrow}</p>

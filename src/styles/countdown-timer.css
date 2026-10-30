@@ -2,7 +2,7 @@
   --timer-accent: var(--site-accent);
   --timer-ink: var(--site-ink);
   --timer-muted: var(--site-muted);
-  padding: 64px 0 100px;
+  padding: 64px 0 0;
   background: var(--site-background);
   color: var(--timer-ink);
 }
@@ -387,7 +387,7 @@
 }
 
 .timer-feature-grid {
-  margin: 36px 0 64px;
+  margin: 32px 0 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
@@ -428,21 +428,6 @@
 
 .timer-info-section .info-block > p:last-child {
   max-width: 720px;
-  color: var(--site-muted);
-}
-
-.timer-privacy-block {
-  margin-bottom: 0;
-  padding: 24px 0 0;
-  border-top: 1px solid var(--site-border);
-}
-
-.timer-privacy-block h2 {
-  font-size: 1.2rem;
-}
-
-.timer-privacy-block p {
-  margin: 0;
   color: var(--site-muted);
 }
 

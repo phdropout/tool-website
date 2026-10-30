@@ -1,4 +1,4 @@
-# Tools
+# Papers & Pixels
 
 Browser-based utilities for images, PDFs, timers, and local media. File processing happens in the browser.
 

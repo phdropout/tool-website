@@ -1,16 +1,16 @@
 ---
 import { sitePath } from "../scripts/site-path.js";
 import UsefulDetails from "./UsefulDetails.astro";
+import HowToUse from "./HowToUse.astro";
 import "../styles/merge-pdf.css";
 ---
 
 <section class="mp-page">
   <div class="container mp-container">
     <header class="mp-intro">
-      <p class="eyebrow">The right pages. In the right order.</p>
+      <p class="eyebrow">PDF organization</p>
       <h1>Merge PDF</h1>
-      <p>Pick the pages you need and bring them together in one document.</p>
-      <span>Files stay on your device · Free, no sign-up</span>
+      <p>Select pages from your PDFs and arrange them into a single document.</p>
     </header>
 
     <div class="mp-tool" data-merge-pdf>
@@ -80,11 +80,20 @@ import "../styles/merge-pdf.css";
       <noscript><p>Enable JavaScript to arrange and merge PDFs locally in your browser.</p></noscript>
     </div>
 
-    <div class="mp-guide">
-      <article><span>01</span><h2>Choose a document</h2><p>Add your PDFs and switch between them using the document tabs on the right.</p></article>
-      <article><span>02</span><h2>Build your page order</h2><p>Drag selected pages into your merged PDF. Rearrange them, remove a page, or add an entire document.</p></article>
-      <article><span>03</span><h2>Download your PDF</h2><p>Check the numbered output pages, give your file a name, and save the combined document.</p></article>
-    </div>
+    <HowToUse steps={[
+      {
+        title: "Open your PDFs",
+        description: "Add your documents. Use the tabs on the right to switch between their pages.",
+      },
+      {
+        title: "Select and arrange pages",
+        description: "Drag pages into the merged preview, or use Add selected or Add all pages. Reorder or remove pages as needed.",
+      },
+      {
+        title: "Merge and download",
+        description: "Check the final page order, name your document, and select Create merged PDF. Download the finished file.",
+      },
+    ]} />
     <UsefulDetails>
       <details><summary>Are my PDFs uploaded anywhere?</summary><p>No. Your PDFs are read, previewed, and merged on your device. This tool does not upload your files to a server.</p></details>
       <details><summary>Can I add the same page more than once?</summary><p>Yes. Adding pages copies them into the result; it does not remove them from the source. Every copy can be moved or removed independently. The result can contain up to 500 pages.</p></details>

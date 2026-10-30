@@ -10,7 +10,12 @@ Manage the background server with `astro dev stop`, `astro dev status`, and `ast
 
 ## UI conventions
 
+- The site brand is **Papers & Pixels**, defined in `src/site.js`. Keep tool names descriptive.
+
 - Use the shared teal accent, soft neutral backgrounds, and simple layouts across the homepage and tools.
+- Use locally served Google Fonts: DM Sans for body text and controls, Manrope for headings. Font declarations and tokens live in `src/styles/global.css`; licenses are in `public/fonts/`.
+- Keep copy specific to the task. Avoid repeated free/no-account/local-processing banners; put privacy details in the relevant FAQ and Privacy page. Describe features through user benefits rather than implementation details.
+- Use `src/components/HowToUse.astro` for numbered instructions below a tool, followed by the shared FAQ headed “Common questions.”
 - Use `src/components/UsefulDetails.astro` for FAQs: a readable-width section, plain disclosure rows, thin separators, and generous spacing. Avoid individual boxed FAQ cards.
 - Keep supporting content similarly lightweight and readable.
 - Separate content sections with spacing rather than divider borders, with subtle dividers below the site header and above the footer. Preserve the shared FAQ row separators and useful control outlines. Give dropdown chevrons comfortable inset spacing. Avoid link underlines; use accent colors, hover feedback, and visible keyboard focus instead.

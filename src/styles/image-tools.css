@@ -26,22 +26,6 @@
   font-size: 0.75rem;
 }
 
-.image-privacy-note {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-  color: var(--site-muted);
-  font-size: 0.82rem;
-}
-
-.image-privacy-note svg {
-  flex-shrink: 0;
-  color: var(--site-accent);
-}
-
 .image-tools-card [hidden] {
   display: none !important;
 }
@@ -72,7 +56,7 @@
 }
 
 .tool-page {
-  padding: 80px 0 110px;
+  padding: 64px 0 0;
 }
 
 .tool-intro {
@@ -635,50 +619,12 @@
 }
 
 .tool-info-section {
-  padding: 90px 0 110px;
+  padding: 0 0 80px;
   background: var(--site-background);
 }
 
 .image-tool-info .info-container {
   max-width: 1040px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 48px;
-}
-
-.image-tool-info .useful-details {
-  grid-column: 1 / -1;
-  width: 100%;
-}
-
-.info-block,
-.privacy-block {
-  margin-bottom: 0;
-}
-
-.image-tool-info .info-block h2,
-.image-tool-info .privacy-block h2 {
-  margin: 0 0 18px;
-  font-size: 1.2rem;
-  letter-spacing: -0.025em;
-}
-
-.info-block > p:last-child,
-.privacy-block p {
-  color: var(--site-muted);
-}
-
-.privacy-block {
-  padding: 0;
-}
-
-.privacy-block h2 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-}
-
-.privacy-block p {
-  margin: 0;
 }
 
 button:focus-visible,
@@ -691,13 +637,8 @@ summary:focus-visible {
 }
 
 @media (max-width: 760px) {
-  .image-tool-info .info-container {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
   .tool-page {
-    padding: 60px 0 80px;
+    padding: 40px 0 0;
   }
 
   .workspace {
@@ -719,7 +660,7 @@ summary:focus-visible {
 
 
   .tool-info-section {
-    padding: 70px 0 85px;
+    padding: 0 0 64px;
   }
 }
 

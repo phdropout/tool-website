@@ -1,9 +1,10 @@
 ---
 import InformationLayout from "../layouts/InformationLayout.astro";
+import { SITE_NAME } from "../site.js";
 ---
 
-<InformationLayout title="Privacy Policy" description="How Tools handles your files, browser preferences, and visits." eyebrow="Your privacy">
-  <p>Last updated: <time datetime="2026-10-28">October 28, 2026</time></p>
+<InformationLayout title="Privacy Policy" description={`How ${SITE_NAME} handles your files, browser preferences, and visits.`} eyebrow="Your privacy">
+  <p>Last updated: <time datetime="2026-10-30">October 30, 2026</time></p>
   <section>
     <h2>Files you choose</h2>
     <p>The current image, PDF, and media tools process files locally in your browser. We do not upload their contents to our servers. This includes images, PDFs, videos, and embedded metadata read by the tools.</p>
@@ -22,7 +23,7 @@ import InformationLayout from "../layouts/InformationLayout.astro";
   <section>
     <h2>Website requests and hosting</h2>
     <p>Visiting a page sends ordinary network requests to the service hosting the website. These requests can include your IP address, browser information, requested URL, referrer information, and time of access. Hosting or network providers may process this information to deliver the site, protect it, and maintain service logs.</p>
-    <p>GitHub Pages is the planned hosting provider. When this site is served through GitHub Pages, GitHub logs and stores visitors' IP addresses for security purposes, whether or not they are signed in to GitHub. See <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub's hosting information</a> and <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's Privacy Statement</a> for its data practices.</p>
+    <p>This website is hosted on GitHub Pages. GitHub logs and stores visitors' IP addresses for security purposes, whether or not they are signed in to GitHub. See <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub's hosting information</a> and <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's Privacy Statement</a> for its data practices.</p>
     <p>Local file processing does not prevent these ordinary website requests. Selected file contents are not included in them by our tools.</p>
   </section>
   <section>

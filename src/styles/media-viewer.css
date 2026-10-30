@@ -8,7 +8,6 @@
 .mv-intro .eyebrow { font-size: 0.75rem; }
 .mv-intro h1 { margin: 0 0 16px; font-size: clamp(2.3rem, 5.5vw, 3.6rem); line-height: 1.1; letter-spacing: -0.04em; }
 .mv-intro > p:not(.eyebrow) { max-width: 580px; margin: 0 auto 18px; color: var(--site-muted); font-size: 1.05rem; }
-.mv-intro > span { color: var(--site-muted); font-size: 0.82rem; }
 .mv-tool { padding: 24px; border-radius: 20px; background: var(--site-surface); }
 .mv-welcome { padding: 48px 24px; border: 1px dashed var(--site-border-strong); border-radius: 14px; background: var(--site-surface-soft); text-align: center; }
 .mv-welcome > svg { display: block; margin: 0 auto 24px; color: var(--site-accent); }
@@ -43,10 +42,6 @@
 .mv-no-results { padding: 40px 16px; text-align: center; color: var(--site-muted); }
 .mv-status { margin: 16px 0 0; color: var(--site-muted); font-size: 0.82rem; }
 .mv-status:empty { display: none; }
-.mv-guide { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; padding: 64px 8px; }
-.mv-guide article > span { color: var(--site-accent); font-size: 0.8rem; font-weight: 700; }
-.mv-guide h2 { margin: 10px 0; font-size: 1.05rem; }
-.mv-guide p { margin: 0; color: var(--site-muted); font-size: 0.9rem; line-height: 1.7; }
 
 /* An opaque backdrop keeps attention on the selected media. */
 .mv-dialog { position: fixed; inset: 0; width: 100vw; max-width: none; height: 100dvh; max-height: none; padding: 0; margin: 0; border: 0; background: transparent; color: #eef5f5; overflow: hidden; }
@@ -87,7 +82,6 @@
   .mv-search { grid-column: 1 / -1; }
   .mv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .mv-open { padding: 6px; }
-  .mv-guide { grid-template-columns: 1fr; gap: 28px; padding: 40px 8px; }
   .mv-viewer-toolbar { padding: 12px; }
   .mv-viewer-title { flex-basis: 100%; }
   .mv-viewer-title strong { max-width: 85vw; }
